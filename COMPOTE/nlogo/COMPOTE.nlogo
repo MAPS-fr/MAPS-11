@@ -1,10 +1,14 @@
 globals []  ;
-breed [ managers manager ]  ; sheep is its own plural, so we use "a-sheep" as the singular.
+breed [ managers manager ]  ; managers des parcelles
 breed [ controllers controller ]
-turtles-own [ energy ]       ; both managers and controllers
-patches-own [ countdown ]
+turtles-own [ Sa Sd]       ; both managers and controllers
+managers-own [ Income ]       ; managers only
+controllers-own [  ]       ; controllers only
 
-__includes["devel_production.nls"]
+patches-own [ Variety Sensibility Quality Production Infest  ]
+
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls"]
+
 
 to setup
   clear-all
@@ -14,14 +18,18 @@ to setup
   reset-ticks
 end
 
-to set-patches
-  ;;lire les fichiers csv
-end
+
 
 
 to go
-  ;;something
-  devel_production
+  ask patches [develop_patches]
+  ask patches [aggr_infest]
+  ask managers [action_managers]
+  action_controller
+  if (ticks mod 30) = 0 [
+    ;show sentence "year" ticks / 30
+    yearly_update
+  ]
   tick
 end
 @#$#@#$#@
