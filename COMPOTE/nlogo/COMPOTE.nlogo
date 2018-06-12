@@ -1,20 +1,27 @@
-globals []  ;
+globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax file_name]  ;
+extensions [csv]
 breed [ managers manager ]  ; managers des parcelles
 breed [ controllers controller ]
 turtles-own [ Sa Sd]       ; both managers and controllers
 managers-own [ Income ]       ; managers only
 controllers-own [  ]       ; controllers only
 
-patches-own [ Variety Sensibility Quality Production Infest  ]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest ]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" "set-managers.nls"]
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls"
+           "action_controller.nls" "yearly_update.nls" "set_patches.nls"
+           "set-managers.nls" "cosmetics.nls" "setup_globals.nls"]
 
 
 to setup
-  clear-all
 
+  setup_globals
   set-patches
   set-managers
+
+  ask one-of patches [
+    set Infest Sensibility * random-float Iinit
+  ]
 
   reset-ticks
 end
@@ -31,6 +38,7 @@ to go
     ;show sentence "year" ticks / 30
     yearly_update
   ]
+  cosmetics
   tick
 end
 @#$#@#$#@
@@ -100,11 +108,11 @@ SLIDER
 57
 183
 90
-Svar1
-Svar1
+i-Svar1
+i-Svar1
 0
 1
-0.5
+0.1
 0.1
 1
 NIL
@@ -115,11 +123,11 @@ SLIDER
 96
 182
 129
-Svar2
-Svar2
+i-Svar2
+i-Svar2
 0
 1
-0.3
+0.1
 0.1
 1
 NIL
@@ -130,12 +138,85 @@ SLIDER
 137
 182
 170
-Svar3
-Svar3
+i-Svar3
+i-Svar3
 0
 1
-0.7
 0.1
+0.1
+1
+NIL
+HORIZONTAL
+
+INPUTBOX
+186
+61
+245
+121
+i-rProd
+0.0
+1
+0
+Number
+
+SLIDER
+10
+175
+182
+208
+i-Iinit
+i-Iinit
+0
+0.1
+0.001
+0.001
+1
+NIL
+HORIZONTAL
+
+SLIDER
+9
+212
+181
+245
+i-tpsExtermination
+i-tpsExtermination
+0
+300
+5.0
+5
+1
+NIL
+HORIZONTAL
+
+BUTTON
+148
+11
+211
+44
+step
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+11
+249
+183
+282
+i-radiusInfestMax
+i-radiusInfestMax
+1
+100
+1.0
+1
 1
 NIL
 HORIZONTAL
@@ -482,7 +563,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

@@ -1,3 +1,10 @@
-to develop_patches
- 
+to develop_patches ;;patch context
+  set Production Production + rProd * Production * (1 - Production / (1 - Infest) )
+  if Infest > 0 [
+    set Infest Infest + Sensibility * rInfest
+  ]
+  let npatches patches with [distance myself < radiusInfestMax]
+  ask npatches [
+     
+  ]
 end
