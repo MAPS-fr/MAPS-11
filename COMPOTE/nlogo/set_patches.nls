@@ -1,7 +1,7 @@
 
 to set-patches
 
-  let matrix but-first (csv:from-file "data/polygon/polygon_1.csv" ",");
+  let matrix but-first (csv:from-file (word "data/" file_name ".csv") ",");
   
   ;;lire les fichiers csv 
   ask patches[

@@ -1,4 +1,4 @@
-globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax]  ;
+globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax file_name]  ;
 extensions [csv]
 breed [ managers manager ]  ; managers des parcelles
 breed [ controllers controller ]
@@ -112,7 +112,7 @@ i-Svar1
 i-Svar1
 0
 1
-0.0
+0.1
 0.1
 1
 NIL
@@ -127,7 +127,7 @@ i-Svar2
 i-Svar2
 0
 1
-0.0
+0.1
 0.1
 1
 NIL
@@ -142,7 +142,7 @@ i-Svar3
 i-Svar3
 0
 1
-0.0
+0.1
 0.1
 1
 NIL
@@ -168,7 +168,7 @@ i-Iinit
 i-Iinit
 0
 0.1
-0.0
+0.001
 0.001
 1
 NIL
@@ -183,7 +183,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-0.0
+5.0
 5
 1
 NIL
@@ -215,7 +215,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-0.0
+1.0
 1
 1
 NIL
@@ -563,7 +563,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
