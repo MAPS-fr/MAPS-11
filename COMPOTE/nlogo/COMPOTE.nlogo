@@ -16,6 +16,10 @@ to setup
   set-patches
   set-managers
 
+  ask one-of patches [
+    set Infest Sensibility * random-float Iinit
+  ]
+
   reset-ticks
 end
 
@@ -150,6 +154,21 @@ rProd
 1
 0
 Number
+
+SLIDER
+10
+175
+182
+208
+Iinit
+Iinit
+0
+0.1
+0.01
+0.001
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
