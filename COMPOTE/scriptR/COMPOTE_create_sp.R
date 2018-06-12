@@ -26,3 +26,9 @@ for(i in 1:10){
             file = paste0("nlogo/data/random",i,".csv"), row.names = F)
 }
 
+# generate farmers' IDs   #C'est pourri, mais ça marche:
+m1=matrix(rep(rep(1:10,each=10),10),nrow=10,byrow=T)
+m1=rbind(m1,m1+10,m1+20,m1+30,m1+40,m1+50,m1+60,m1+70,m1+80,m1+90) #ne marche pas avec rep ou seq... ???
+image(m1)
+write.csv(m1-1,file = paste0("nlogo/data/farmers.csv"), row.names = F)
+
