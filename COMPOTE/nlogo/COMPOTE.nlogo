@@ -7,13 +7,14 @@ controllers-own [  ]       ; controllers only
 
 patches-own [ Variety Sensibility Quality Production Infest  ]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls"]
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" "set-managers.nls"]
 
 
 to setup
   clear-all
 
   set-patches
+  set-managers
 
   reset-ticks
 end
@@ -93,6 +94,51 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+11
+57
+183
+90
+Svar1
+Svar1
+0
+1
+0.5
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+96
+182
+129
+Svar2
+Svar2
+0
+1
+0.3
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+137
+182
+170
+Svar3
+Svar3
+0
+1
+0.7
+0.1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
