@@ -16,7 +16,8 @@ plot(1:30,prodt1,type="l")
 
 Infest0<-0.01
 tpsExtermination<-100
-rI<- 1/ tpsExtermination
+Si<-0.9
+rI<- Si * 1/ tpsExtermination
 Infest1<-NULL
 for(pst in 1:31)
 {

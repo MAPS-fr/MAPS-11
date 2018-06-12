@@ -7,13 +7,20 @@ controllers-own [  ]       ; controllers only
 
 patches-own [ Variety Sensibility Quality Production Infest  ]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls"]
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls"
+           "action_controller.nls" "yearly_update.nls" "set_patches.nls"
+           "set-managers.nls" "cosmetics.nls" "setup_globals.nls"]
 
 
 to setup
-  clear-all
 
+  setup_globals
   set-patches
+  set-managers
+
+  ask one-of patches [
+    set Infest Sensibility * random-float Iinit
+  ]
 
   reset-ticks
 end
@@ -30,8 +37,10 @@ to go
     ;show sentence "year" ticks / 30
     yearly_update
   ]
+  cosmetics
   tick
 end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 313
@@ -93,6 +102,77 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+11
+57
+183
+90
+Svar1
+Svar1
+0
+1
+0.5
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+96
+182
+129
+Svar2
+Svar2
+0
+1
+0.3
+0.1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+137
+182
+170
+Svar3
+Svar3
+0
+1
+0.7
+0.1
+1
+NIL
+HORIZONTAL
+
+INPUTBOX
+188
+10
+247
+70
+rProd
+0.5
+1
+0
+Number
+
+SLIDER
+10
+175
+182
+208
+Iinit
+Iinit
+0
+0.1
+0.01
+0.001
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
