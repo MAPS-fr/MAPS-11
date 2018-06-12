@@ -1,4 +1,4 @@
-globals []  ; don't let sheep population grow too large
+globals []  ;
 breed [ managers manager ]  ; sheep is its own plural, so we use "a-sheep" as the singular.
 breed [ controllers controller ]
 turtles-own [ energy ]       ; both managers and controllers
@@ -8,9 +8,16 @@ __includes["devel_production.nls"]
 
 to setup
   clear-all
-  ;;something
+
+  set-patches
+
   reset-ticks
 end
+
+to set-patches
+  ;;lire les fichiers csv
+end
+
 
 to go
   ;;something
@@ -19,9 +26,9 @@ to go
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
+368
 10
-647
+805
 448
 -1
 -1
