@@ -5,6 +5,7 @@ end
 
 
 to update_pcolors
+  ask patches with [Infest = 0] [set pcolor ifelse-value (Variety = 0.5 )[red][ifelse-value (Variety = 1) [green][blue]]]
   ask patches with [Infest > 0][
     set pcolor yellow
   ]  

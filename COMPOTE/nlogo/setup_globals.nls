@@ -10,4 +10,7 @@ to setup_globals
   set rInfest 1 / tpsExtermination
   set radiusInfestMax i-radiusInfestMax
   set file_name i-file_name
+  set sigma radiusInfestMax / 2
+  set alpha i-alpha
+  set betap i-betap
 end

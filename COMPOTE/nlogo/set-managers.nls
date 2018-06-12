@@ -1,21 +1,19 @@
 to set-managers
-  
-  ask patches [set myManager -99]
-  
-  create-managers nb_managers [
-	set shape "person"	
-	setxy random-xcor random-ycor
-	set color white
-  set size 2
-  ]
-  ask managers[
-      
-      ifelse count patches with [myManager = -99 ] >= 100 [
-        ask n-of 100 patches with [myManager = -99 ] 
-        [ set myManager [who] of myself ]  
-      ][ask patches with [myManager = -99 ] [set myManager [who] of myself ]
-  ]
     
-  ];end ask managers
+  create-managers nb_managers [
+    	set shape "person"	
+    	move-to one-of patches with [myManager = [who] of myself];random-xcor random-ycor
+    	set color white
+      set size 2
+  ]
+  
+; DONE by set_patches ask managers[
+;      
+;      ifelse count patches with [myManager = -99 ] >= 100 [
+;        ask n-of 100 patches with [myManager = -99 ] 
+;        [ set myManager [who] of myself ]  
+;      ][ask patches with [myManager = -99 ] [set myManager [who] of myself ]
+;  ]
+;  ];end ask managers
 	
 end

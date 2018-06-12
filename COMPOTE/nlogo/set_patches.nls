@@ -2,17 +2,17 @@
 to set-patches
 
   let matrix but-first (csv:from-file (word "data/" file_name ".csv") ",");
-  
+  let matrixfarmers but-first (csv:from-file (word "data/farmers.csv") ",");
   ;;lire les fichiers csv 
   ask patches[
     let row max-pycor - pycor
     let column pxcor - min-pxcor
     set Variety item column item row matrix
     set pcolor ifelse-value (Variety = 0.5 )[red][ifelse-value (Variety = 1) [green][blue]]
-    set Sensibility ifelse-value (Variety = 0.5) [0.4][ifelse-value (Variety = 1) [0.6][0.5]] ;TODO: table/parameters of Sensibility and Quality in fonction of Variety
+    set Sensibility ifelse-value (Variety = 0.5) [Svar2][ifelse-value (Variety = 1) [Svar3][Svar1]]
     set Quality 1 - Sensibility
     set Production 0.1
-    set myManager -99
+    set myManager item column item row matrixfarmers
     set Infest 0
   ]
   

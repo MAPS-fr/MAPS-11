@@ -29,19 +29,19 @@ plot(1:31,Infest1,type="l")
 
 
 # fonction d'integration de potentiels
-rmax<-10
+rmax<-5
 sigma<-rmax/2
 distance <- seq(0,rmax,length=100)
 Infest<-0.01
-pott<- Infest * (1/sqrt(2*pi*sigma^2))*exp(-(distance^2 / (2*sigma^2) ))
+pott<- Infest * exp(-(distance^2 / (2*sigma^2) ))    #  (1/sqrt(2*pi*sigma^2))
 
 plot(distance,pott,type="l")
 # fonction Logistique de probabilité d'apparition d'infestation  et de  valeur d'infestation
 
-pot<-seq(0,10,length=1000)
+pot<-seq(0,100,length=1000)
 alpha<-1
 betap<-0.5
-ProbaInfest =  pot/(1+ exp(-( alpha*(pot-betap))))
+ProbaInfest =  pot/((1+ exp(-( alpha*(pot-betap)))) * rmax^2)
 ProbaInfest[ProbaInfest>1]<-1
 
 plot(pot,ProbaInfest,type="l")

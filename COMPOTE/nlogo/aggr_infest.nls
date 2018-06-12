@@ -1,3 +1,10 @@
 to aggr_infest
-  
+  if(t_PotentielInfest > 0 and Infest = 0)[
+    let rn random-float 1
+    let probaInfest t_PotentielInfest / ( (1 + exp( - ( alpha * (t_PotentielInfest - betap)))) * radiusInfestMax ^ 2)
+    if probaInfest > 1 [set probaInfest 1]
+    if rn < (probaInfest * Sensibility) [
+      set Infest (Iinit * Sensibility)
+    ]
+  ]
 end

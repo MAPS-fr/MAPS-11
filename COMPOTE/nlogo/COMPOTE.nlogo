@@ -1,41 +1,52 @@
-globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax file_name nb_managers]  ;
+globals [
+  ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap
+  ;;; other globals:
+  sigma rInfest
+]
 extensions [csv]
-breed [ managers manager ]  ; managers des parcelles
-breed [ controllers controller ]
-turtles-own [ Sa Sd]       ; both managers and controllers
-managers-own [ Income ]       ; managers only
-controllers-own [  ]       ; controllers only
+breed [ managers manager ]        ; managers of patches (farmers)
+breed [ controllers controller ]  ; controllers of level of desease (from institutions)
 
+;;;;; State variables :
+turtles-own [ Sa Sd ]       ; both managers and controllers
+managers-own [ Income ]     ; managers only
+controllers-own [  ]        ; controllers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls"
-           "action_controller.nls" "yearly_update.nls" "set_patches.nls"
-           "set-managers.nls" "cosmetics.nls" "setup_globals.nls"]
+;; files with procedures:
+__includes["setup_globals.nls" "set_patches.nls" "set-managers.nls"
+           "develop_patches.nls" "aggr_infest.nls"
+           "action_managers.nls" "action_controller.nls"
+           "yearly_update.nls"
+           "cosmetics.nls" ]
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;                  SETUP                               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to setup
-
   setup_globals
   set-patches
   set-managers
-
+  ;Infest one patch as seed:
   ask one-of patches [
     set Infest Sensibility * random-float Iinit
   ]
-
   reset-ticks
 end
 
-
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;                  GO                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
+  ask patches [set t_PotentielInfest 0] ;reset temporary variables
   ask patches [develop_patches]
   ask patches [aggr_infest]
   ask managers [action_managers]
   action_controller
-  if (ticks mod 30) = 0 [
-    ;show sentence "year" ticks / 30
+  if (ticks mod 30) = 0 [   ;show sentence "year" ticks / 30 ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
   ]
   cosmetics
@@ -70,9 +81,9 @@ ticks
 30.0
 
 BUTTON
-8
+3
 10
-71
+66
 43
 NIL
 setup
@@ -87,9 +98,9 @@ NIL
 1
 
 BUTTON
-79
+74
 10
-142
+137
 43
 NIL
 go
@@ -104,25 +115,25 @@ NIL
 1
 
 SLIDER
-11
-57
-183
-90
+3
+61
+171
+94
 i-Svar1
 i-Svar1
 0
 1
-0.1
+0.5
 0.1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-10
-96
-182
-129
+3
+97
+171
+130
 i-Svar2
 i-Svar2
 0
@@ -134,25 +145,25 @@ NIL
 HORIZONTAL
 
 SLIDER
-10
-137
-182
-170
+2
+133
+171
+166
 i-Svar3
 i-Svar3
 0
 1
-0.2
+0.9
 0.1
 1
 NIL
 HORIZONTAL
 
 INPUTBOX
-186
-61
-245
-121
+9
+440
+68
+500
 i-rProd
 0.25
 1
@@ -160,40 +171,40 @@ i-rProd
 Number
 
 SLIDER
-10
-175
-182
-208
+2
+352
+169
+385
 i-Iinit
 i-Iinit
 0
 0.1
-0.003
+0.005
 0.001
 1
 NIL
 HORIZONTAL
 
 SLIDER
-9
-212
-181
-245
+1
+280
+169
+313
 i-tpsExtermination
 i-tpsExtermination
 0
 300
-10.0
+30.0
 5
 1
 NIL
 HORIZONTAL
 
 BUTTON
-148
-11
-211
-44
+140
+10
+203
+43
 step
 go
 NIL
@@ -207,45 +218,207 @@ NIL
 1
 
 SLIDER
-11
-249
-183
-282
+1
+316
+168
+349
 i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-2.0
+20.0
 1
 1
 NIL
 HORIZONTAL
 
 INPUTBOX
-27
-299
-195
-359
+1
+168
+169
+228
 i-file_name
-polygon_1
+random1
 1
 0
 String
 
 SLIDER
-40
-383
-212
-416
+10
+504
+102
+537
 i-nb_managers
 i-nb_managers
 0
 100
-27.0
+100.0
 1
 1
 NIL
 HORIZONTAL
+
+TEXTBOX
+10
+411
+160
+439
+Parameters that may not change much:
+11
+0.0
+1
+
+PLOT
+829
+23
+1083
+202
+Infestation levels of infested plots
+NIL
+NIL
+0.0
+10.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot mean [Infest] of patches with [Infest > 0]"
+
+PLOT
+1090
+22
+1342
+203
+Number of infested plots
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count patches with [Infest > 0]"
+"pen-1" 1.0 0 -13840069 true "" "plot count patches with [Infest > 0 and Variety = 1]"
+"pen-2" 1.0 0 -13345367 true "" "plot count patches with [Infest > 0 and Variety = 0]"
+
+BUTTON
+209
+11
+304
+44
+go-15years
+repeat 15 * 30 [ go ]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+1
+244
+168
+277
+i-alpha
+i-alpha
+0
+2
+1.0
+0.1
+1
+NIL
+HORIZONTAL
+
+INPUTBOX
+72
+441
+122
+501
+i-betap
+0.5
+1
+0
+Number
+
+TEXTBOX
+4
+231
+154
+249
+desease parameters:
+11
+0.0
+1
+
+TEXTBOX
+6
+46
+156
+64
+plots parameters:
+11
+0.0
+1
+
+BUTTON
+833
+212
+983
+245
+visualisation potentiel
+ask patches [set pcolor scale-color green t_PotentielInfest 0 1]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+834
+249
+984
+282
+visualisation Infestation
+ask patches [set pcolor scale-color orange Infest 0 1]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+838
+297
+979
+330
+visualisation variety
+update_pcolors
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -589,7 +762,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
