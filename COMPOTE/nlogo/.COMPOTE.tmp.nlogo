@@ -7,7 +7,7 @@ controllers-own [  ]       ; controllers only
 
 patches-own [ Variety Sensibility Quality Production Infest  ]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" "set-managers.nls"]
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" "set-managers.nls" "cosmetics.nls" ]
 
 
 to setup
@@ -35,8 +35,10 @@ to go
     ;show sentence "year" ticks / 30
     yearly_update
   ]
+  cosmetics
   tick
 end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 313
@@ -156,10 +158,10 @@ rProd
 Number
 
 SLIDER
-27
-206
-199
-239
+10
+175
+182
+208
 Iinit
 Iinit
 0

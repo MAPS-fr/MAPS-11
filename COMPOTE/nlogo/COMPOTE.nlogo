@@ -7,12 +7,14 @@ controllers-own [  ]       ; controllers only
 
 patches-own [ Variety Sensibility Quality Production Infest  ]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" "set-managers.nls"]
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls"
+           "action_controller.nls" "yearly_update.nls" "set_patches.nls"
+           "set-managers.nls" "cosmetics.nls" "setup_globals.nls"]
 
 
 to setup
-  clear-all
 
+  setup_globals
   set-patches
   set-managers
 
@@ -35,8 +37,10 @@ to go
     ;show sentence "year" ticks / 30
     yearly_update
   ]
+  cosmetics
   tick
 end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 313

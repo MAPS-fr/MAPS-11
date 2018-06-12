@@ -1,0 +1,15 @@
+to cosmetics
+  update_pcolors
+  update_colors
+end
+
+
+to update_pcolors
+  ask patches with [Infest > 0][
+    set pcolor yellow
+  ]  
+end
+
+to update_colors
+  ;agents visualisation modifications
+end
