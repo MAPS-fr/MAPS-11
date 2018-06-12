@@ -4,6 +4,7 @@ breed [ controllers controller ]
 turtles-own [ energy ]       ; both managers and controllers
 patches-own [ countdown ]
 
+__includes["devel_production.nls"]
 
 to setup
   clear-all
@@ -13,8 +14,8 @@ end
 
 to go
   ;;something
+  devel_production
   tick
-  display-labels
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -43,6 +44,23 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+BUTTON
+0
+0
+0
+0
+NIL
+NIL
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -386,7 +404,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

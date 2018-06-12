@@ -14,8 +14,8 @@ end
 
 to go
   ;;something
+  devel_production
   tick
-  display-labels
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -44,6 +44,40 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+BUTTON
+8
+10
+71
+43
+NIL
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+79
+10
+142
+43
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -387,7 +421,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
