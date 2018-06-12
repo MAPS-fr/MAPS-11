@@ -1,4 +1,5 @@
 globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax]  ;
+extensions [csv]
 breed [ managers manager ]  ; managers des parcelles
 breed [ controllers controller ]
 turtles-own [ Sa Sd]       ; both managers and controllers
@@ -111,7 +112,7 @@ i-Svar1
 i-Svar1
 0
 1
-0.5
+0.0
 0.1
 1
 NIL
@@ -126,7 +127,7 @@ i-Svar2
 i-Svar2
 0
 1
-0.7
+0.0
 0.1
 1
 NIL
@@ -141,7 +142,7 @@ i-Svar3
 i-Svar3
 0
 1
-0.3
+0.0
 0.1
 1
 NIL
@@ -153,7 +154,7 @@ INPUTBOX
 245
 121
 i-rProd
-0.25
+0.0
 1
 0
 Number
@@ -167,7 +168,7 @@ i-Iinit
 i-Iinit
 0
 0.1
-0.01
+0.0
 0.001
 1
 NIL
@@ -182,7 +183,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-30.0
+0.0
 5
 1
 NIL
@@ -214,7 +215,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-5.0
+0.0
 1
 1
 NIL

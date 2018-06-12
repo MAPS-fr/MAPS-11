@@ -4,4 +4,7 @@ to develop_patches ;;patch context
     set Infest Infest + Sensibility * rInfest
   ]
   let npatches patches with [distance myself < radiusInfestMax]
+  ask npatches [
+     
+  ]
 end
