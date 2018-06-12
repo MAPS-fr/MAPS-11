@@ -6,11 +6,26 @@ prodMax<-1
 prodt0<-0.1 
 prodt1<-NULL     
 for(pst in 1:30){
-prodt0<-prodt0+r*prodt0*(1-prodt0/(prodMax*(1-Infest)))
-prodt1<-c(prodt1,prodt0)
+  prodt0<-prodt0+r*prodt0*(1-prodt0/(prodMax*(1-Infest)))
+  prodt1<-c(prodt1,prodt0)
 }
 
 plot(1:30,prodt1,type="l")
+
+#fonction de croissance de la maladie #forme linéaire:
+
+Infest0<-0.01
+tpsExtermination<-100
+rI<- 1/ tpsExtermination
+Infest1<-NULL
+for(pst in 1:31)
+{
+  Infest0<-Infest0 + rI
+  if(Infest0>1)Infest0<-1
+  Infest1<-c(Infest1,Infest0)
+}
+plot(1:31,Infest1,type="l")
+
 
 # fonction d'integration de potentiels
 rmax<-10
