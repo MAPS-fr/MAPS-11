@@ -2,12 +2,12 @@ to set-managers
   
   ask patches [set myManager -99]
   
-  create-managers nb_managers 
+  create-managers nb_managers [
 	set shape "person"	
 	setxy random-xcor random-ycor
 	set color white
   set size 2
-    
+  ]
   ask managers[
       
       ifelse count patches with [myManager = -99 ] >= 100 [

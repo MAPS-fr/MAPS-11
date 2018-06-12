@@ -1,4 +1,4 @@
-globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax file_name]  ;
+globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax file_name nb_managers]  ;
 extensions [csv]
 breed [ managers manager ]  ; managers des parcelles
 breed [ controllers controller ]
@@ -6,7 +6,7 @@ turtles-own [ Sa Sd]       ; both managers and controllers
 managers-own [ Income ]       ; managers only
 controllers-own [  ]       ; controllers only
 
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest ]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager]
 
 __includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls"
            "action_controller.nls" "yearly_update.nls" "set_patches.nls"
@@ -142,7 +142,7 @@ i-Svar3
 i-Svar3
 0
 1
-0.1
+0.2
 0.1
 1
 NIL
@@ -154,7 +154,7 @@ INPUTBOX
 245
 121
 i-rProd
-0.0
+0.25
 1
 0
 Number
@@ -168,7 +168,7 @@ i-Iinit
 i-Iinit
 0
 0.1
-0.001
+0.003
 0.001
 1
 NIL
@@ -183,7 +183,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-5.0
+10.0
 5
 1
 NIL
@@ -215,7 +215,33 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-1.0
+2.0
+1
+1
+NIL
+HORIZONTAL
+
+INPUTBOX
+27
+299
+195
+359
+i-file_name
+polygon_1
+1
+0
+String
+
+SLIDER
+40
+383
+212
+416
+i-nb_managers
+i-nb_managers
+0
+100
+27.0
 1
 1
 NIL
