@@ -16,13 +16,13 @@ for (i in 1:100){
   # visualize the NLM
   #rasterVis::levelplot(mosaicgibbs, margin = FALSE, par.settings = rasterVis::viridisTheme())
   write.csv(matrix(values(mosaicgibbs), nrow = 100, ncol = 100),
-            file = paste0("nlogo/data/polygon/polygon_",i,".csv"), row.names = F)
+            file = paste0("nlogo/data/polygon_",i,".csv"), row.names = F)
 }
 
 ## generate random
 for(i in 1:10){
   write.csv(matrix(sample(seq(from = 0, to = 1, by = 0.5), size = 10000, replace = TRUE),
             nrow = 100, ncol = 100),
-            file = paste0("nlogo/data/random/random",i,".csv"), row.names = F)
+            file = paste0("nlogo/data/random",i,".csv"), row.names = F)
 }
 
