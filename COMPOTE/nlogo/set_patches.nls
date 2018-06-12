@@ -1,9 +1,16 @@
+
 to set-patches
+
+  let matrix but-first (csv:from-file "data/polygon/polygon_1.csv" ",");
+  
   ;;lire les fichiers csv 
   ask patches[
-    set Variety one-of [1 2 3]
-    set pcolor ifelse-value (Variety = 2 )[red][ifelse-value (Variety = 3) [green][blue]]
-    set Sensibility ifelse-value (Variety = 2) [Svar2][ifelse-value (Variety = 3) [Svar3][Svar1]] ;TODO: table/parameters of Sensibility and Quality in fonction of Variety
+    set Variety item column item row matrix
+    let row max-pycor - pycor
+    let column pxcor - min-pxcor
+   
+    set pcolor ifelse-value (Variety = 0.5 )[red][ifelse-value (Variety = 1) [green][blue]]
+    set Sensibility ifelse-value (Variety = 0.5) [0.4][ifelse-value (Variety = 1) [0.6][0.5]] ;TODO: table/parameters of Sensibility and Quality in fonction of Variety
     set Quality 1 - Sensibility
     set Production 0.1 
     set Infest 0
