@@ -5,4 +5,7 @@ to setup_globals
   set Svar2 i-Svar2
   set Svar3 i-Svar3
   set Iinit i-Iinit
+  set tpsExtermination i-tpsExtermination
+  set rInfest 1 / tpsExtermination
+  set radiusInfestMax i-radiusInfestMax
 end

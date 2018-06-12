@@ -1,11 +1,11 @@
-globals []  ;
+globals [Iinit rProd Svar1 Svar2 Svar3 tpsExtermination rInfest radiusInfestMax]  ;
 breed [ managers manager ]  ; managers des parcelles
 breed [ controllers controller ]
 turtles-own [ Sa Sd]       ; both managers and controllers
 managers-own [ Income ]       ; managers only
 controllers-own [  ]       ; controllers only
 
-patches-own [ Variety Sensibility Quality Production Infest  ]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest ]
 
 __includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls"
            "action_controller.nls" "yearly_update.nls" "set_patches.nls"
@@ -126,7 +126,7 @@ i-Svar2
 i-Svar2
 0
 1
-0.3
+0.7
 0.1
 1
 NIL
@@ -141,19 +141,19 @@ i-Svar3
 i-Svar3
 0
 1
-0.7
+0.3
 0.1
 1
 NIL
 HORIZONTAL
 
 INPUTBOX
-188
-10
-247
-70
+186
+61
+245
+121
 i-rProd
-0.5
+0.25
 1
 0
 Number
@@ -169,6 +169,53 @@ i-Iinit
 0.1
 0.01
 0.001
+1
+NIL
+HORIZONTAL
+
+SLIDER
+9
+212
+181
+245
+i-tpsExtermination
+i-tpsExtermination
+0
+300
+30.0
+5
+1
+NIL
+HORIZONTAL
+
+BUTTON
+148
+11
+211
+44
+step
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+SLIDER
+11
+249
+183
+282
+i-radiusInfestMax
+i-radiusInfestMax
+1
+100
+5.0
+1
 1
 NIL
 HORIZONTAL
@@ -515,7 +562,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
