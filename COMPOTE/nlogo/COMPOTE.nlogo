@@ -40,7 +40,6 @@ to go
   cosmetics
   tick
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 313
@@ -108,8 +107,8 @@ SLIDER
 57
 183
 90
-Svar1
-Svar1
+i-Svar1
+i-Svar1
 0
 1
 0.5
@@ -123,8 +122,8 @@ SLIDER
 96
 182
 129
-Svar2
-Svar2
+i-Svar2
+i-Svar2
 0
 1
 0.3
@@ -138,8 +137,8 @@ SLIDER
 137
 182
 170
-Svar3
-Svar3
+i-Svar3
+i-Svar3
 0
 1
 0.7
@@ -153,7 +152,7 @@ INPUTBOX
 10
 247
 70
-rProd
+i-rProd
 0.5
 1
 0
@@ -164,8 +163,8 @@ SLIDER
 175
 182
 208
-Iinit
-Iinit
+i-Iinit
+i-Iinit
 0
 0.1
 0.01
@@ -516,7 +515,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
