@@ -140,6 +140,17 @@ Svar3
 NIL
 HORIZONTAL
 
+INPUTBOX
+188
+10
+247
+70
+rProd
+0.5
+1
+0
+Number
+
 @#$#@#$#@
 ## WHAT IS IT?
 

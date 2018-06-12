@@ -7,7 +7,7 @@ controllers-own [  ]       ; controllers only
 
 patches-own [ Variety Sensibility Quality Production Infest  ]
 
-__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" ]
+__includes["develop_patches.nls" "aggr_infest.nls" "action_managers.nls" "action_controller.nls" "yearly_update.nls" "set_patches.nls" "set-managers.nls"]
 
 
 to setup
@@ -15,6 +15,10 @@ to setup
 
   set-patches
   set-managers
+
+  ask one-of patches [
+    set Infest Sensibility * random-float Iinit
+  ]
 
   reset-ticks
 end
@@ -136,6 +140,32 @@ Svar3
 1
 0.7
 0.1
+1
+NIL
+HORIZONTAL
+
+INPUTBOX
+188
+10
+247
+70
+rProd
+0.5
+1
+0
+Number
+
+SLIDER
+27
+206
+199
+239
+Iinit
+Iinit
+0
+0.1
+0.01
+0.001
 1
 NIL
 HORIZONTAL
