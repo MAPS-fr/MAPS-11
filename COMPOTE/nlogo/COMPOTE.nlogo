@@ -1,6 +1,6 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
-  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M
   ;;; other globals:
   sigma rInfest
   ;;; calculated global
@@ -150,7 +150,7 @@ i-Svar1
 i-Svar1
 0
 1
-0.5
+0.6
 0.1
 1
 NIL
@@ -165,7 +165,7 @@ i-Svar2
 i-Svar2
 0
 1
-0.1
+1.0
 0.1
 1
 NIL
@@ -180,7 +180,7 @@ i-Svar3
 i-Svar3
 0
 1
-0.9
+1.0
 0.1
 1
 NIL
@@ -253,7 +253,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-15.0
+2.0
 1
 1
 NIL
@@ -511,8 +511,8 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.2
-0.1
+0.0
+0.01
 1
 NIL
 HORIZONTAL
