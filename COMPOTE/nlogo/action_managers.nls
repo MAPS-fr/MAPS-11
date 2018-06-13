@@ -24,8 +24,9 @@ to action_managers  ;; context manager
     set myPatchToHide max-one-of myPatchesInfested [infest] ; Il faut mettre la condition avec le Sa
     set myPatchToCut max-one-of myPatchesInfested [infest]
     
-    if myPatchToCut != nobody [ cutMyPatch]
-    if myPatchToHide != nobody [ hideMyPatch]
+    if myPatchToHide != nobody [ hideMyPatch] ; mettre la condition avec le Sa
+    ;if myPatchToCut != nobody [ cutMyPatch]
+    
        
 end
 
@@ -65,15 +66,12 @@ to hideMyPatch
     
     set Production (Production * PropCut)
     set Infest CuttedPercentage
-    
+    set detectInfest false
     set nb_patchHidded nb_patchHidded + 1
    ]
   set myPatchesInfested myPatches with [detectInfest]
-  set meanSensibility mean [sensibility] of myPatches with [Variety != -1]
  
   ;(meanSensibility * (count(myPatches with [Variety != -1])+1) - ([Sensibility] of myPatchToCut))/(count(myPatches with [Variety != -1]))
-
-  
   
 end
 
