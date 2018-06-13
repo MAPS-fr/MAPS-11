@@ -39,6 +39,18 @@ to setup
   reset-ticks
 end
 
+to setup-openmole
+  setup_globals_openmole
+  set-patches
+  set-managers
+  ;Infest one patch as seed:
+  ask one-of patches [
+    set Infest Sensibility * Iinit
+  ]
+  calcul_index
+  reset-ticks
+end
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;                  GO                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -54,6 +66,14 @@ to go
   ]
   calcul_index
   cosmetics
+  tick
+end
+
+to go-openmole
+   ask patches [set t_PotentielInfest 0] ;reset temporary variables
+  ask patches [develop_patches]
+  ask patches [aggr_infest]
+  calcul_index
   tick
 end
 @#$#@#$#@
@@ -237,12 +257,12 @@ NIL
 HORIZONTAL
 
 INPUTBOX
-1
-168
+6
 169
-228
+174
+229
 i-file_name
-polygon_gem10_rep_1
+polygon_gem10_rep
 1
 0
 String
@@ -423,6 +443,17 @@ NIL
 NIL
 NIL
 1
+
+INPUTBOX
+188
+169
+257
+229
+i-file_number
+1.0
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?

@@ -9,8 +9,22 @@ to setup_globals
   set tpsExtermination i-tpsExtermination
   set rInfest 1 / tpsExtermination
   set radiusInfestMax i-radiusInfestMax
-  set file_name i-file_name
+  set file_name (word i-file_name "_" i-file_number)
   set sigma radiusInfestMax / 2
   set alpha i-alpha
   set betap i-betap
+end
+
+to setup_globals_openmole
+  set rProd 0.25
+  set Svar1 0.5
+  set Svar2 0.1
+  set Svar3 0.9
+  set Iinit 0.005
+  set file_name (word i-file_name "_" i-file_number)
+  set nb_managers 0
+  set rInfest 1 / tpsExtermination
+  set sigma radiusInfestMax / 2
+  set alpha 1
+  set betap 0.5
 end
