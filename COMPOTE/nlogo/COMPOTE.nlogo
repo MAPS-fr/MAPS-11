@@ -75,6 +75,7 @@ to go-openmole
   ask patches [aggr_infest]
   calcul_index
   tick
+  if ticks >= 450 [stop]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -218,7 +219,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-20.0
+190.0
 5
 1
 NIL
@@ -250,7 +251,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-20.0
+15.0
 1
 1
 NIL
@@ -262,7 +263,7 @@ INPUTBOX
 174
 229
 i-file_name
-polygon_gem10_rep
+polygon_gem1000_rep
 1
 0
 String
@@ -797,7 +798,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
