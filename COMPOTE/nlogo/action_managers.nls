@@ -2,8 +2,10 @@
 to action_managers  ;; context manager
 
   if not any? myPatchesInfested [
+  
   let lmeanSensibility meanSensibility
   let lsd sd 
+  let lsa sa
   let numberMinPatches1 min(list 15 (count myPatches with [sensibility <= lmeanSensibility]) )
   let numberMinPatches2 min(list 5 (count myPatches with [sensibility >= lmeanSensibility]) )
     
@@ -20,12 +22,22 @@ to action_managers  ;; context manager
     
     set myPatchesInfested myPatches with [detectInfest]
     
-  ] 
-    set myPatchToHide max-one-of myPatchesInfested [infest] ; Il faut mettre la condition avec le Sa
-    set myPatchToCut max-one-of myPatchesInfested [infest]
+  ]
+  
+  if (count (myPatchesInfested) > 0)[
+    let max_infested_patch  max-one-of myPatchesInfested [infest]
+    ifelse (([infest] of max_infested_patch) < sa) [
+      set myPatchToHide max_infested_patch
+      if myPatchToHide != nobody [ hideMyPatch]
+    ]
+    [
+      set myPatchToCut max_infested_patch
+      if myPatchToCut != nobody [ cutMyPatch]
+    ]
     
-    if myPatchToHide != nobody [ hideMyPatch] ; mettre la condition avec le Sa
-    ;if myPatchToCut != nobody [ cutMyPatch]
+  ]
+ 
+
     
        
 end
@@ -47,10 +59,14 @@ to cutMyPatch
     set nb_patchCutted nb_patchCutted + 1
   ]
   set myPatchesInfested myPatches with [detectInfest]
-  set meanSensibility mean [sensibility] of myPatches with [Variety != -1]
+  ifelse(count myPatches with [Variety != -1] > 0)[
+    set meanSensibility mean [sensibility] of myPatches with [Variety != -1]
+  ]
+  [
+    set meanSensibility 0
+  ]
  
   ;(meanSensibility * (count(myPatches with [Variety != -1])+1) - ([Sensibility] of myPatchToCut))/(count(myPatches with [Variety != -1]))
-
 end
 
 
