@@ -6,6 +6,7 @@ globals [
   ;;; calculated global
   pct_infected_tot pct_var1 pct_var2
   nb_patchCutted
+  nb_patchHidded
 ]
 extensions [csv]
 breed [ managers manager ]        ; managers of patches (farmers)
@@ -13,7 +14,7 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
-managers-own [ Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested]     ; managers only
+managers-own [ Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 controllers-own [  ]        ; controllers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest ]
 
@@ -516,6 +517,17 @@ i-Sd_M
 NIL
 HORIZONTAL
 
+MONITOR
+1183
+370
+1297
+415
+NIL
+nb_patchHidded
+17
+1
+11
+
 @#$#@#$#@
 ## WHAT IS IT?
 
@@ -858,7 +870,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
