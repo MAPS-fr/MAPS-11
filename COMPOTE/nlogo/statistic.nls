@@ -1,0 +1,6 @@
+to calcul_index
+  let pinfested patches with[Infest > 0]
+  set pct_infected_tot (count pinfested) / count patches
+  set pct_var1 count pinfested with[variety = 0] / count patches
+  set pct_var2 count pinfested with[variety = 0.5] / count patches
+end

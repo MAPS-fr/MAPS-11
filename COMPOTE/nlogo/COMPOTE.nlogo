@@ -3,6 +3,8 @@ globals [
   Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap
   ;;; other globals:
   sigma rInfest
+  ;;; calculated global
+  pct_infected_tot pct_var1 pct_var2
 ]
 extensions [csv]
 breed [ managers manager ]        ; managers of patches (farmers)
@@ -18,7 +20,7 @@ patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest my
 __includes["setup_globals.nls" "set_patches.nls" "set-managers.nls"
            "develop_patches.nls" "aggr_infest.nls"
            "action_managers.nls" "action_controller.nls"
-           "yearly_update.nls"
+           "yearly_update.nls" "statistic.nls"
            "cosmetics.nls" ]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -33,6 +35,7 @@ to setup
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
+  calcul_index
   reset-ticks
 end
 
@@ -49,6 +52,7 @@ to go
   if (ticks mod 30) = 0 [   ;show sentence "year" ticks / 30 ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
   ]
+  calcul_index
   cosmetics
   tick
 end
@@ -762,7 +766,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
