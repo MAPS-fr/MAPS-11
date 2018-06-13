@@ -38,7 +38,7 @@ pott<- Infest * exp(-(distance^2 / (2*sigma^2) ))    #  (1/sqrt(2*pi*sigma^2))
 plot(distance,pott,type="l")
 # fonction Logistique de probabilité d'apparition d'infestation  et de  valeur d'infestation
 
-pot<-seq(0,100,length=1000)
+pot<-seq(0,1,length=1000)
 alpha<-1
 betap<-0.5
 ProbaInfest =  pot/((1+ exp(-( alpha*(pot-betap)))) * rmax^2)

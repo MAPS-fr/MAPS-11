@@ -14,6 +14,8 @@ to set-patches
     set Production 0.1
     set myManager item column item row matrixfarmers
     set Infest 0
+    set myneighbors patches with [distance myself < radiusInfestMax]
+    ;let myneighborsdistance 0
   ]
   
 end

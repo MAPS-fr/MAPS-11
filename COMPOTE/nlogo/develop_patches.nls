@@ -12,7 +12,7 @@ to develop_patches ;;patch context
     if Infest > 1 [set Infest 1]
     
     ;; actualize the risks maps to other patches
-    let npatches patches with [distance myself < radiusInfestMax and Infest = 0]
+    let npatches myneighbors with [Infest = 0]
     let pInfest Infest
     ask npatches [
       let distancep distance myself

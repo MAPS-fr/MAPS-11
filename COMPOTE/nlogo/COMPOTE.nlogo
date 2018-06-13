@@ -12,7 +12,7 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 turtles-own [ Sa Sd ]       ; both managers and controllers
 managers-own [ Income ]     ; managers only
 controllers-own [  ]        ; controllers only
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors]
 
 ;; files with procedures:
 __includes["setup_globals.nls" "set_patches.nls" "set-managers.nls"
@@ -194,7 +194,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-30.0
+20.0
 5
 1
 NIL
@@ -238,7 +238,7 @@ INPUTBOX
 169
 228
 i-file_name
-polygon_1
+polygon_gem10_rep_1
 1
 0
 String
