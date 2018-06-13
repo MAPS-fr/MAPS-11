@@ -1,0 +1,31 @@
+val seed = Val[Int]
+val pct_var1 = Val[Double]
+
+
+val sampling = (seed in (UniformDistribution[Int]() take 10))
+    
+val cmds = 
+  List(
+    "random-seed ${seed}",
+    "setup",
+    "while [ticks < 450] [go]"
+  )
+
+val compoteTask =
+  NetLogo6Task(workDirectory / "COMPOTE.nlogo", cmds, embedWorkspace= true) set (
+    inputs += seed,
+    outputs += (seed),
+    netLogoOutputs += ("pct_var1", pct_var1)
+  )
+
+//val csvHook = CSVHook(workDirectory / "result/exploration_test.csv", seed, infecteTotal,infecteVariete1, infecteVariete2)
+
+
+val exploration = 
+  DirectSampling(
+    evaluation = compoteTask,
+    sampling = sampling
+    )
+  
+
+exploration
