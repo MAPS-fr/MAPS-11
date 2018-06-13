@@ -24,10 +24,10 @@ for(h in c(10,100,1000)){
 
 
 ## generate random
-for(i in 1:10){
+for(i in 1:30){
   write.csv(matrix(sample(seq(from = 0, to = 1, by = 0.5), size = 10000, replace = TRUE),
             nrow = 100, ncol = 100),
-            file = paste0("nlogo/data/random_",i,".csv"), row.names = F)
+            file = paste0("nlogo/data/random_rep_",i,".csv"), row.names = F)
 }
 
 # generate farmers' IDs   #C'est pourri, mais ?a marche:
