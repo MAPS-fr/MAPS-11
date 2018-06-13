@@ -17,10 +17,13 @@ Ftheo <- theo
 my.df <- NULL
 for(i in 1:length(csv.l)){
   a <- raster(as.matrix(read.csv(paste0("nlogo/data/",csv.l[i]))))
+  a1<- (a==0)*1
+  a2<- (a==0.5)*1
+  a3<- (a==1)*1
   print(paste0("nlogo/data/",csv.l[i]))
-  if_v1 <- indexFrag(a,threshold = 0,theo = Ftheo)[[1]]
-  if_v2 <- indexFrag(a,threshold = 0.5,theo = Ftheo)[[1]]
-  if_v3 <- indexFrag(a,threshold = 1,theo = Ftheo)[[1]]
+  if_v1 <- indexFrag(a1,threshold = 0.5,theo = Ftheo)[[1]]
+  if_v2 <- indexFrag(a2,threshold = 0.5,theo = Ftheo)[[1]]
+  if_v3 <- indexFrag(a3,threshold = 0.5,theo = Ftheo)[[1]]
   v <- c(csv.l[i], if_v1, if_v2, if_v3)
   my.df <- rbind(my.df, v)
 }
