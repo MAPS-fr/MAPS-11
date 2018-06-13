@@ -1,10 +1,12 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
-  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M
   ;;; other globals:
   sigma rInfest
   ;;; calculated global
   pct_infected_tot pct_var1 pct_var2
+  nb_patchCutted
+  nb_patchHidded
 ]
 extensions [csv]
 breed [ managers manager ]        ; managers of patches (farmers)
@@ -12,9 +14,9 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
-managers-own [ Income ]     ; managers only
+managers-own [ Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 controllers-own [  ]        ; controllers only
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest ]
 
 ;; files with procedures:
 __includes["setup_globals.nls" "set_patches.nls" "set-managers.nls"
@@ -79,10 +81,10 @@ to go-openmole
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-313
-21
-821
-530
+471
+23
+979
+532
 -1
 -1
 5.0
@@ -219,7 +221,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-190.0
+100.0
 5
 1
 NIL
@@ -294,9 +296,9 @@ Parameters that may not change much:
 1
 
 PLOT
-829
+988
 23
-1083
+1242
 202
 Infestation levels of infested plots
 NIL
@@ -312,9 +314,9 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot mean [Infest] of patches with [Infest > 0]"
 
 PLOT
-1090
+1249
 22
-1342
+1501
 203
 Number of infested plots
 NIL
@@ -395,9 +397,9 @@ plots parameters:
 1
 
 BUTTON
-833
+992
 212
-983
+1142
 245
 visualisation potentiel
 ask patches [set pcolor scale-color green t_PotentielInfest 0 1]
@@ -412,9 +414,9 @@ NIL
 1
 
 BUTTON
-834
+993
 249
-984
+1143
 282
 visualisation Infestation
 ask patches [set pcolor scale-color orange Infest 0 1]
@@ -429,9 +431,9 @@ NIL
 1
 
 BUTTON
-838
+997
 297
-979
+1138
 330
 visualisation variety
 update_pcolors
@@ -451,15 +453,15 @@ INPUTBOX
 257
 229
 i-file_number
-1.0
+5.0
 1
 0
 Number
 
 MONITOR
-990
+1149
 211
-1095
+1254
 256
 NIL
 pct_infected_tot
@@ -468,9 +470,9 @@ pct_infected_tot
 11
 
 MONITOR
-1101
+1260
 211
-1164
+1323
 256
 NIL
 pct_var1
@@ -479,12 +481,49 @@ pct_var1
 11
 
 MONITOR
-1171
+1330
 210
-1234
+1393
 255
 NIL
 pct_var2
+17
+1
+11
+
+MONITOR
+1192
+298
+1306
+343
+nb_patchCutted
+nb_patchCutted
+17
+1
+11
+
+SLIDER
+188
+247
+360
+280
+i-Sd_M
+i-Sd_M
+0
+1
+0.2
+0.1
+1
+NIL
+HORIZONTAL
+
+MONITOR
+1183
+370
+1297
+415
+NIL
+nb_patchHidded
 17
 1
 11
@@ -831,7 +870,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

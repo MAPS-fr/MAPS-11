@@ -1,3 +1,81 @@
-to action_managers
+
+to action_managers  ;; context manager
+
+  if not any? myPatchesInfested [
+  let lmeanSensibility meanSensibility
+  let lsd sd 
+  let numberMinPatches1 min(list 15 (count myPatches with [sensibility <= lmeanSensibility]) )
+  let numberMinPatches2 min(list 5 (count myPatches with [sensibility >= lmeanSensibility]) )
+    
+    ask n-of numberMinPatches1 myPatches with [sensibility <= lmeanSensibility] 
+    [
+      ifelse infest > lsd [set detectInfest true] [set detectInfest false]
+    ]   
+ 
+    
+    ask n-of numberMinPatches2 myPatches with [sensibility >= lmeanSensibility] 
+    [
+      ifelse infest > lsd [set detectInfest true] [set detectInfest false]
+    ]   
+    
+    set myPatchesInfested myPatches with [detectInfest]
+    
+  ] 
+    set myPatchToHide max-one-of myPatchesInfested [infest] ; Il faut mettre la condition avec le Sa
+    set myPatchToCut max-one-of myPatchesInfested [infest]
+    
+    if myPatchToHide != nobody [ hideMyPatch] ; mettre la condition avec le Sa
+    ;if myPatchToCut != nobody [ cutMyPatch]
+    
+       
+end
+
+
+
+to cutMyPatch
+
+  ask myPatchToCut [
+    set Production 0
+    set Variety -1 
+    set Sensibility 0
+    set Quality 0 
+    set Infest 0
+    set t_PotentielInfest 0 
+    set detectInfest false
+    set plabel "cut"
+    set pcolor white
+    set nb_patchCutted nb_patchCutted + 1
+  ]
+  set myPatchesInfested myPatches with [detectInfest]
+  set meanSensibility mean [sensibility] of myPatches with [Variety != -1]
+ 
+  ;(meanSensibility * (count(myPatches with [Variety != -1])+1) - ([Sensibility] of myPatchToCut))/(count(myPatches with [Variety != -1]))
+
+end
+
+
+
+
+
+to hideMyPatch
+   ask myPatchToHide [
+    
+    let CuttedPercentage random-float (Sd_M * 0.9)
+    
+    let PropCut (Infest - CuttedPercentage)
+    
+    set Production (Production * PropCut)
+    set Infest CuttedPercentage
+    set detectInfest false
+    set nb_patchHidded nb_patchHidded + 1
+   ]
+  set myPatchesInfested myPatches with [detectInfest]
+ 
+  ;(meanSensibility * (count(myPatches with [Variety != -1])+1) - ([Sensibility] of myPatchToCut))/(count(myPatches with [Variety != -1]))
   
 end
+
+
+
+
+

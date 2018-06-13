@@ -5,6 +5,7 @@ to setup_globals
   set Svar2 i-Svar2
   set Svar3 i-Svar3
   set Iinit i-Iinit
+  set Sd_M i-Sd_M
   set nb_managers i-nb_managers
   set tpsExtermination i-tpsExtermination
   set rInfest 1 / tpsExtermination

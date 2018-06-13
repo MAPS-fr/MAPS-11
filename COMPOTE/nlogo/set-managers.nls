@@ -5,6 +5,11 @@ to set-managers
     	move-to one-of patches with [myManager = [who] of myself];random-xcor random-ycor
     	set color white
       set size 2
+      set myPatches patches with [myManager = [who] of myself]
+      set meanSensibility mean [sensibility] of myPatches
+      set myPatchToCut nobody
+      set myPatchesInfested no-patches
+      set Sd Sd_M
   ]
   
 ; DONE by set_patches ask managers[
