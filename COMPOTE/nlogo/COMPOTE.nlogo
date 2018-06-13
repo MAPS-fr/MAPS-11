@@ -456,6 +456,39 @@ i-file_number
 0
 Number
 
+MONITOR
+990
+211
+1095
+256
+NIL
+pct_infected_tot
+17
+1
+11
+
+MONITOR
+1101
+211
+1164
+256
+NIL
+pct_var1
+17
+1
+11
+
+MONITOR
+1171
+210
+1234
+255
+NIL
+pct_var2
+17
+1
+11
+
 @#$#@#$#@
 ## WHAT IS IT?
 
@@ -802,6 +835,49 @@ NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="experiment-dynDesease" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="450"/>
+    <metric>pct_infected_tot</metric>
+    <metric>pct_var1</metric>
+    <metric>pct_var2</metric>
+    <enumeratedValueSet variable="i-nb_managers">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Svar1">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-radiusInfestMax" first="1" step="1" last="25"/>
+    <enumeratedValueSet variable="i-alpha">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-betap">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Svar2">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-rProd">
+      <value value="0.25"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="30"/>
+    <enumeratedValueSet variable="i-file_name">
+      <value value="&quot;random_rep&quot;"/>
+      <value value="&quot;polygon_gem10_rep&quot;"/>
+      <value value="&quot;polygon_gem100_rep&quot;"/>
+      <value value="&quot;polygon_gem1000_rep&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-tpsExtermination" first="20" step="20" last="200"/>
+    <enumeratedValueSet variable="i-Svar3">
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Iinit">
+      <value value="0.005"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
