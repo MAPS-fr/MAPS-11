@@ -31,7 +31,7 @@ to setup
   set-managers
   ;Infest one patch as seed:
   ask one-of patches [
-    set Infest Sensibility * random-float Iinit
+    set Infest Sensibility * Iinit
   ]
   reset-ticks
 end
@@ -238,7 +238,7 @@ INPUTBOX
 169
 228
 i-file_name
-random1
+polygon_1
 1
 0
 String
