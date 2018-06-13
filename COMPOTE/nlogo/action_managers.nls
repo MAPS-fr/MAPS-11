@@ -7,8 +7,9 @@ to action_managers  ;; context manager
   
 
       let lmeanSensibility meanSensibility
-      let lsd sd 
+      let lsd sd
       let lsa sa
+      
       let numberMinPatches1 min(list 15 (count myPatches with [sensibility <= lmeanSensibility]) )
       let numberMinPatches2 min(list 5 (count myPatches with [sensibility >= lmeanSensibility]) )
       
@@ -39,7 +40,6 @@ to action_managers  ;; context manager
           set myPatchToCut max_infested_patch
           if myPatchToCut != nobody [ cutMyPatch]
         ]
-      
       ]
       [
        set will_act false

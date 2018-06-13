@@ -253,7 +253,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-15.0
+24.0
 1
 1
 NIL
@@ -511,7 +511,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.24
+0.25
 0.01
 1
 NIL
@@ -537,7 +537,7 @@ i-Sa_M
 i-Sa_M
 0
 1
-0.25
+1.0
 0.01
 1
 NIL
