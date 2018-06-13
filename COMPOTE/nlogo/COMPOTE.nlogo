@@ -14,7 +14,7 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
-managers-own [ Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
+managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 controllers-own [  ]        ; controllers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest ]
 
@@ -253,7 +253,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-2.0
+15.0
 1
 1
 NIL
@@ -511,7 +511,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.0
+0.24
 0.01
 1
 NIL
@@ -527,6 +527,21 @@ nb_patchHidded
 17
 1
 11
+
+SLIDER
+190
+294
+362
+327
+i-Sa_M
+i-Sa_M
+0
+1
+0.25
+0.01
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

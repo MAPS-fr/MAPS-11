@@ -1,41 +1,52 @@
 
 to action_managers  ;; context manager
-
   if not any? myPatchesInfested [
   
-  let lmeanSensibility meanSensibility
-  let lsd sd 
-  let lsa sa
-  let numberMinPatches1 min(list 15 (count myPatches with [sensibility <= lmeanSensibility]) )
-  let numberMinPatches2 min(list 5 (count myPatches with [sensibility >= lmeanSensibility]) )
     
-    ask n-of numberMinPatches1 myPatches with [sensibility <= lmeanSensibility] 
-    [
-      ifelse infest > lsd [set detectInfest true] [set detectInfest false]
-    ]   
- 
-    
-    ask n-of numberMinPatches2 myPatches with [sensibility >= lmeanSensibility] 
-    [
-      ifelse infest > lsd [set detectInfest true] [set detectInfest false]
-    ]   
-    
-    set myPatchesInfested myPatches with [detectInfest]
-    
-  ]
+  set working_force 1.0
   
-  if (count (myPatchesInfested) > 0)[
-    let max_infested_patch  max-one-of myPatchesInfested [infest]
-    ifelse (([infest] of max_infested_patch) < sa) [
-      set myPatchToHide max_infested_patch
-      if myPatchToHide != nobody [ hideMyPatch]
+
+      let lmeanSensibility meanSensibility
+      let lsd sd 
+      let lsa sa
+      let numberMinPatches1 min(list 15 (count myPatches with [sensibility <= lmeanSensibility]) )
+      let numberMinPatches2 min(list 5 (count myPatches with [sensibility >= lmeanSensibility]) )
+      
+      ask n-of numberMinPatches1 myPatches with [sensibility <= lmeanSensibility] 
+      [
+        ifelse infest > lsd [set detectInfest true] [set detectInfest false]
+      ]   
+      
+      
+      ask n-of numberMinPatches2 myPatches with [sensibility >= lmeanSensibility] 
+      [
+        ifelse infest > lsd [set detectInfest true] [set detectInfest false]
+      ]   
+      
+      set myPatchesInfested myPatches with [detectInfest]
+      
     ]
+    let will_act true
+    while[(working_force > 0.0) and will_act]
     [
-      set myPatchToCut max_infested_patch
-      if myPatchToCut != nobody [ cutMyPatch]
-    ]
-    
-  ]
+      ifelse (count (myPatchesInfested) > 0)[
+        let max_infested_patch  max-one-of myPatchesInfested [infest]
+        ifelse (([infest] of max_infested_patch) < sa) [
+          set myPatchToHide max_infested_patch
+          if myPatchToHide != nobody [ hideMyPatch]
+        ]
+        [
+          set myPatchToCut max_infested_patch
+          if myPatchToCut != nobody [ cutMyPatch]
+        ]
+      
+      ]
+      [
+       set will_act false
+      ]
+      set myPatchesInfested myPatches with [detectInfest]
+    ]  
+
  
 
     
@@ -45,8 +56,9 @@ end
 
 
 to cutMyPatch
-
+  let my_production 0
   ask myPatchToCut [
+    set my_production Production
     set Production 0
     set Variety -1 
     set Sensibility 0
@@ -58,6 +70,8 @@ to cutMyPatch
     set pcolor white
     set nb_patchCutted nb_patchCutted + 1
   ]
+  set working_force (working_force - my_production)
+  
   set myPatchesInfested myPatches with [detectInfest]
   ifelse(count myPatches with [Variety != -1] > 0)[
     set meanSensibility mean [sensibility] of myPatches with [Variety != -1]
@@ -74,17 +88,26 @@ end
 
 
 to hideMyPatch
+  let my_production_cutted 0
    ask myPatchToHide [
     
     let CuttedPercentage random-float (Sd_M * 0.9)
     
+
+    
     let PropCut (Infest - CuttedPercentage)
     
+    set my_production_cutted Production
+    
     set Production (Production * PropCut)
+    
+    set my_production_cutted (my_production_cutted - Production)
+    
     set Infest CuttedPercentage
     set detectInfest false
     set nb_patchHidded nb_patchHidded + 1
    ]
+  set working_force (working_force - my_production_cutted)
   set myPatchesInfested myPatches with [detectInfest]
  
   ;(meanSensibility * (count(myPatches with [Variety != -1])+1) - ([Sensibility] of myPatchToCut))/(count(myPatches with [Variety != -1]))
