@@ -21,6 +21,23 @@ to-report prepare-lotterie [#patchset]
   report resultList  
 end
 
+to-report lotterie-n [#patchset n]
+  let preport (patch-set nobody)
+  let vID prepare-lotterie #patchset
+  let wh 0
+  let pID 0
+  let dashpos 0
+  repeat n[
+    set wh random (length vID)
+    set pID item wh vID
+    set vID filter [i -> i != pID] vID
+    set dashpos position "-" pID
+    set preport (patch-set preport (patch (read-from-string (substring pID 0 dashpos)) (read-from-string (substring pID (dashpos + 1) (length pID)))))
+  ]
+  report preport
+end
+
+
 to-report lotterie [#patchset]
   let vID prepare-lotterie #patchset
   let wh random (length vID)

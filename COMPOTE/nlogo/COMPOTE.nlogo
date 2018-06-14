@@ -26,7 +26,7 @@ __includes["setup_globals.nls" "set_patches.nls"
            "develop_patches.nls" "aggr_infest.nls"
            "action_managers.nls" "action_controller.nls"
            "yearly_update.nls" "statistic.nls"
-           "cosmetics.nls" ]
+           "cosmetics.nls" "lotterie.nls"]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;                  SETUP                               ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
