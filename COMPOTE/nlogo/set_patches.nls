@@ -10,7 +10,7 @@ to set-patches
     set Variety item column item row matrix
     set pcolor ifelse-value (Variety = 0.5 )[red][ifelse-value (Variety = 1) [green][blue]]
     set Sensibility ifelse-value (Variety = 0.5) [Svar2][ifelse-value (Variety = 1) [Svar3][Svar1]]
-    set Quality 1 - Sensibility
+    set Quality Sensibility
     set Production 0.1
     set myManager item column item row matrixfarmers
     set Infest 0
