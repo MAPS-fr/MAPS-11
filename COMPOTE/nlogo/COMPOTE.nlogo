@@ -18,7 +18,7 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 turtles-own [ Sa Sd ]       ; both managers and controllers
 controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
 managers-own [working_force Income  myAnnualProdTot  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque pIncome]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque pIncome tpsLatence]
 
 ;; files with procedures:
 __includes["setup_globals.nls" "set_patches.nls"
@@ -157,7 +157,7 @@ i-Svar1
 i-Svar1
 0
 1
-0.7
+0.5
 0.1
 1
 NIL
@@ -172,7 +172,7 @@ i-Svar2
 i-Svar2
 0
 1
-0.0
+0.1
 0.1
 1
 NIL
@@ -187,7 +187,7 @@ i-Svar3
 i-Svar3
 0
 1
-0.0
+0.9
 0.1
 1
 NIL
@@ -199,7 +199,7 @@ INPUTBOX
 68
 500
 i-rProd
-0.0
+0.25
 1
 0
 Number
@@ -213,7 +213,7 @@ i-Iinit
 i-Iinit
 0
 0.1
-0.0
+0.005
 0.001
 1
 NIL
@@ -228,7 +228,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-0.0
+100.0
 5
 1
 NIL
@@ -260,7 +260,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-0.0
+10.0
 1
 1
 NIL
@@ -272,7 +272,7 @@ INPUTBOX
 174
 229
 i-file_name
-0
+random_rep
 1
 0
 String
@@ -286,7 +286,7 @@ i-nb_managers
 i-nb_managers
 0
 100
-0.0
+100.0
 1
 1
 NIL
@@ -366,7 +366,7 @@ i-alpha
 i-alpha
 0
 2
-0.0
+1.0
 0.1
 1
 NIL
@@ -378,7 +378,7 @@ INPUTBOX
 122
 501
 i-betap
-0.0
+0.5
 1
 0
 Number
@@ -460,7 +460,7 @@ INPUTBOX
 257
 229
 i-file_number
-0.0
+1.0
 1
 0
 Number
@@ -518,7 +518,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.0
+0.25
 0.01
 1
 NIL
@@ -544,7 +544,7 @@ i-Sa_M
 i-Sa_M
 0
 1
-0.0
+0.5
 0.01
 1
 NIL
@@ -559,7 +559,7 @@ i-Sd_C
 i-Sd_C
 0
 1
-0.0
+0.1
 0.01
 1
 NIL
@@ -574,7 +574,7 @@ i-Sa_C
 i-Sa_C
 0
 1
-0.0
+0.2
 0.01
 1
 NIL
@@ -589,7 +589,7 @@ i-Controleur_Survey_Capacity_Global
 i-Controleur_Survey_Capacity_Global
 0
 250
-0.0
+100.0
 25
 1
 NIL
@@ -604,7 +604,7 @@ i-Diffuse_Risque_Global
 i-Diffuse_Risque_Global
 0
 1
-0.0
+0.5
 0.01
 1
 NIL
@@ -969,7 +969,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
