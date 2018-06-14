@@ -1089,6 +1089,294 @@ NetLogo 6.0.2
       <value value="0.005"/>
     </enumeratedValueSet>
   </experiment>
+  <experiment name="EffetControleurs30_8" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="450"/>
+    <metric>pct_infected_tot</metric>
+    <metric>pct_var1</metric>
+    <metric>pct_var2</metric>
+    <metric>nb_patchCutted</metric>
+    <metric>nb_patchHidded</metric>
+    <metric>nb_patchCuttedByC</metric>
+    <enumeratedValueSet variable="i-nb_managers">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionControllers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionManagers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Controleur_Survey_Capacity_Global">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-alpha">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Diffuse_Risque_Global">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_M">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_M">
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-betap">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-rProd">
+      <value value="0.25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Iinit">
+      <value value="0.005"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSa">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSd">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-tpsExtermination">
+      <value value="30"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-radiusInfestMax">
+      <value value="8"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-file_name">
+      <value value="&quot;polygon_gem10_rep&quot;"/>
+      <value value="&quot;polygon_gem1000_rep&quot;"/>
+      <value value="&quot;random_rep&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.3"/>
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.3"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="5"/>
+  </experiment>
+  <experiment name="EffetControleurs180_4" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="450"/>
+    <metric>pct_infected_tot</metric>
+    <metric>pct_var1</metric>
+    <metric>pct_var2</metric>
+    <metric>nb_patchCutted</metric>
+    <metric>nb_patchHidded</metric>
+    <metric>nb_patchCuttedByC</metric>
+    <enumeratedValueSet variable="i-nb_managers">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionControllers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionManagers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Controleur_Survey_Capacity_Global">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-alpha">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Diffuse_Risque_Global">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_M">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_M">
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-betap">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-rProd">
+      <value value="0.25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Iinit">
+      <value value="0.005"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSa">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSd">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-tpsExtermination">
+      <value value="180"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-radiusInfestMax">
+      <value value="4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-file_name">
+      <value value="&quot;polygon_gem10_rep&quot;"/>
+      <value value="&quot;polygon_gem1000_rep&quot;"/>
+      <value value="&quot;random_rep&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.3"/>
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.3"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="5"/>
+  </experiment>
+  <experiment name="EffetControleurs180_4_Doryan" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="450"/>
+    <metric>pct_infected_tot</metric>
+    <metric>pct_var1</metric>
+    <metric>pct_var2</metric>
+    <metric>nb_patchCutted</metric>
+    <metric>nb_patchHidded</metric>
+    <metric>nb_patchCuttedByC</metric>
+    <enumeratedValueSet variable="i-nb_managers">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionControllers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionManagers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Controleur_Survey_Capacity_Global">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-alpha">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Diffuse_Risque_Global">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_M">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_M">
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-betap">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-rProd">
+      <value value="0.25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Iinit">
+      <value value="0.005"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSa">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSd">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-tpsExtermination">
+      <value value="180"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-radiusInfestMax">
+      <value value="4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-file_name">
+      <value value="&quot;polygon_gem10_rep&quot;"/>
+      <value value="&quot;polygon_gem1000_rep&quot;"/>
+      <value value="&quot;random_rep&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.3"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="5"/>
+  </experiment>
+  <experiment name="EffetControleurs180_4_David" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="450"/>
+    <metric>pct_infected_tot</metric>
+    <metric>pct_var1</metric>
+    <metric>pct_var2</metric>
+    <metric>nb_patchCutted</metric>
+    <metric>nb_patchHidded</metric>
+    <metric>nb_patchCuttedByC</metric>
+    <enumeratedValueSet variable="i-nb_managers">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionControllers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-actionManagers">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Controleur_Survey_Capacity_Global">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-alpha">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Diffuse_Risque_Global">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_M">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_M">
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-betap">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-rProd">
+      <value value="0.25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Iinit">
+      <value value="0.005"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSa">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-deltaSd">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-tpsExtermination">
+      <value value="180"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-radiusInfestMax">
+      <value value="4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-file_name">
+      <value value="&quot;polygon_gem10_rep&quot;"/>
+      <value value="&quot;polygon_gem1000_rep&quot;"/>
+      <value value="&quot;random_rep&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sa_C">
+      <value value="0.3"/>
+      <value value="0.4"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="i-Sd_C">
+      <value value="0.1"/>
+      <value value="0.2"/>
+      <value value="0.3"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="5"/>
+  </experiment>
 </experiments>
 @#$#@#$#@
 @#$#@#$#@
