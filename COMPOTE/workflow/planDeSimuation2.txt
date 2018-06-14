@@ -1,0 +1,26 @@
+Plan de simulation:
+
+Parametres de maladie:
+radius tpsExtermination   Modalité
+4		180					basse
+8		30					haute
+
+
+Parametres de managers:
+	Sd_m	Sa_m	delta_Sd	delta_Sa
+Max 0.4		0.5		0.1			0.1
+Min 0.1		0.1		0.0			0.0
+Pas 0.1		0.1		0.05		0.05
+N	4		5		3			3		Total: 180
++ 3 modalités spatiale x 5 repliques x 2 dyn Maladie
+			180 * 3 * 5 * 2 = 5400 simulations
+			
+Effet croisé avec controleurs:
+	Sd_c	Sa_c
+Max 0.3		0.4	
+Min 0.1		0.1	
+Pas 0.1		0.1	
+N	3		4		 			 		Total: 12
++ 3 modalités spatiale x 5 repliques x 2 dyn Maladie x 1 comportement managers 
+(Sd 0.3 & Sa 0.4 sans evolution de Sa et Sd)
+			12 * 3 * 5 * 2 = 360 simulations
