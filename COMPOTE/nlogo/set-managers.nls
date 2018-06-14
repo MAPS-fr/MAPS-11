@@ -9,6 +9,8 @@ to set-managers
       set meanSensibility mean [sensibility] of myPatches
       set myPatchToCut nobody
       set myPatchesInfested no-patches
+      set myAnnualProdTot 0
+      set Income 0
       set Sd Sd_M
       set Sa Sa_M
   ]

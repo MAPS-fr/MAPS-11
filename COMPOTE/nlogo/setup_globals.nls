@@ -1,9 +1,9 @@
 to setup_globals
   clear-all
   set rProd i-rProd
-  set Svar1 i-Svar1
-  set Svar2 i-Svar2
-  set Svar3 i-Svar3
+  set Svar1 0.5
+  set Svar2 0.1
+  set Svar3 0.9
   set Iinit i-Iinit
   
   set Sd_M i-Sd_M
