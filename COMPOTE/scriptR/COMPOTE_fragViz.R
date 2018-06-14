@@ -4,8 +4,8 @@ library(stringr)
 library(ggplot2)
 library(reshape2)
 
-setwd("~/github/MAPS-11/COMPOTE/nlogo/result/")
-frag.df <- read.csv(file = "fragmentation_space.csv")
+setwd("~/github/MAPS-11/COMPOTE/")
+frag.df <- read.csv(file = "results/fragmentation_space.csv")
 
 ## We want to understand the behavior of spation configuration regarding the fragmentation index.
 ### First we are looking for polygons
@@ -36,5 +36,6 @@ ggplot(data = gg.df)+
   geom_boxplot(aes(x = gem, y = value))+
   facet_grid(~variable)+
   theme_bw()+
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(x = "", y = "frag. index")
+ggsave("img/fragmentation_space.png")
