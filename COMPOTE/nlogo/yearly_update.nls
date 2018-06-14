@@ -39,14 +39,13 @@ to yearly_update
         set detectInfest false
         set plabel "new"
         set pcolor white
-        show "planted"
       ]
     ]
-      
-      
-      ; Update Sa
-      if Sa < 1 [set Sa Sa - 0.1]
-
+    
+    
+    ; Update Sa
+    if Sa < 1 [set Sa Sa - 0.1]
+    
     
     ; Update meanSensibility
     set meanSensibility mean [sensibility] of myPatches
