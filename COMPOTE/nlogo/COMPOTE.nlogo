@@ -40,6 +40,7 @@ __includes["setup_globals.nls" "set_patches.nls"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to setup
+  clear-all
   setup_globals
   set-patches
   set-managers
@@ -56,6 +57,7 @@ to setup-openmole
   setup_globals_openmole
   set-patches
   set-managers
+  set-controller
   ;Infest one patch as seed:
   ask one-of patches [
     set Infest Sensibility * Iinit
@@ -69,20 +71,16 @@ end
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to go
-  diffuse risque Diffuse_Risque_Global
 
   ask patches [set t_PotentielInfest 0] ;reset temporary variables
   ask patches [develop_patches]
   ask patches [aggr_infest]
   if actionManagers [ ask managers [action_managers] ]
-  if actionControllers [ ask controllers [action_controller] ]
-
-  ask managers [action_managers]
-  ask controllers [action_controller]
-  ask flags [action_flags]
-  action_controller
-
-  if (ticks mod 30) = 0 [   ;show sentence "year" ticks / 30 ; happen every 30 ticks at the end of the year of vegetative production
+  if actionControllers [
+    diffuse risque Diffuse_Risque_Global
+    ask controllers [action_controller]
+  ]
+  if (ticks mod 30) = 0 [   ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
   ]
   calcul_index
@@ -91,12 +89,9 @@ to go
 end
 
 to go-openmole
-   ask patches [set t_PotentielInfest 0] ;reset temporary variables
-  ask patches [develop_patches]
-  ask patches [aggr_infest]
-  calcul_index
-  tick
-  if ticks >= 450 [stop]
+  while [ticks <= 450 and any? patches with [Infest > 0]] [
+    go
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -120,8 +115,8 @@ GRAPHICS-WINDOW
 99
 0
 99
-0
-0
+1
+1
 1
 ticks
 30.0
@@ -160,56 +155,11 @@ NIL
 NIL
 1
 
-SLIDER
-3
-61
-171
-94
-i-Svar1
-i-Svar1
-0
-1
-0.5
-0.1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-3
-97
-171
-130
-i-Svar2
-i-Svar2
-0
-1
-0.1
-0.1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-2
-133
-171
-166
-i-Svar3
-i-Svar3
-0
-1
-0.9
-0.1
-1
-NIL
-HORIZONTAL
-
 INPUTBOX
-9
-440
-68
-500
+11
+366
+70
+426
 i-rProd
 0.25
 1
@@ -217,10 +167,10 @@ i-rProd
 Number
 
 SLIDER
-2
-352
-169
-385
+9
+253
+176
+286
 i-Iinit
 i-Iinit
 0
@@ -232,10 +182,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-1
-280
-169
-313
+8
+181
+176
+214
 i-tpsExtermination
 i-tpsExtermination
 0
@@ -264,10 +214,10 @@ NIL
 1
 
 SLIDER
-1
-316
-168
-349
+8
+217
+175
+250
 i-radiusInfestMax
 i-radiusInfestMax
 1
@@ -279,21 +229,21 @@ NIL
 HORIZONTAL
 
 INPUTBOX
-6
-169
-174
-229
+0
+64
+168
+124
 i-file_name
-random_rep
+polygon_gem100_rep
 1
 0
 String
 
 SLIDER
-10
-504
-102
-537
+18
+428
+110
+461
 i-nb_managers
 i-nb_managers
 0
@@ -305,10 +255,10 @@ NIL
 HORIZONTAL
 
 TEXTBOX
-10
-411
-160
-439
+18
+335
+168
+363
 Parameters that may not change much:
 11
 0.0
@@ -370,10 +320,10 @@ NIL
 1
 
 SLIDER
-1
-244
-168
-277
+8
+145
+175
+178
 i-alpha
 i-alpha
 0
@@ -385,10 +335,10 @@ NIL
 HORIZONTAL
 
 INPUTBOX
-72
-441
-122
-501
+80
+365
+130
+425
 i-betap
 0.5
 1
@@ -396,10 +346,10 @@ i-betap
 Number
 
 TEXTBOX
-4
-231
-154
-249
+11
+132
+161
+150
 desease parameters:
 11
 0.0
@@ -450,12 +400,12 @@ NIL
 1
 
 BUTTON
-997
-297
-1138
-330
+994
+286
+1135
+319
 visualisation variety
-update_pcolors
+update_pcolors\nask turtles [show-turtle]
 NIL
 1
 T
@@ -467,12 +417,12 @@ NIL
 1
 
 INPUTBOX
-188
-169
-257
-229
+180
+63
+249
+123
 i-file_number
-1.0
+10.0
 1
 0
 Number
@@ -511,10 +461,10 @@ pct_var2
 11
 
 MONITOR
-1192
-298
-1306
-343
+1153
+260
+1267
+305
 nb_patchCutted
 nb_patchCutted
 17
@@ -522,25 +472,25 @@ nb_patchCutted
 11
 
 SLIDER
-188
-247
-360
-280
+232
+168
+404
+201
 i-Sd_M
 i-Sd_M
 0
 1
-0.25
+0.17
 0.01
 1
 NIL
 HORIZONTAL
 
 MONITOR
-1183
-370
-1297
-415
+1276
+261
+1390
+306
 NIL
 nb_patchHidded
 17
@@ -548,40 +498,40 @@ nb_patchHidded
 11
 
 SLIDER
-190
-294
-362
-327
+234
+206
+406
+239
 i-Sa_M
 i-Sa_M
 0
 1
-0.5
+0.56
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-191
-348
-363
-381
+231
+312
+403
+345
 i-Sd_C
 i-Sd_C
 0
 1
-0.07
+0.0
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-188
-400
-360
-433
+225
+349
+397
+382
 i-Sa_C
 i-Sa_C
 0
@@ -593,10 +543,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-173
-463
-459
-496
+4
+469
+202
+502
 i-Controleur_Survey_Capacity_Global
 i-Controleur_Survey_Capacity_Global
 0
@@ -608,10 +558,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-174
-510
-376
-543
+218
+390
+420
+423
 i-Diffuse_Risque_Global
 i-Diffuse_Risque_Global
 0
@@ -623,12 +573,12 @@ NIL
 HORIZONTAL
 
 BUTTON
-1006
-367
-1157
-400
+990
+323
+1141
+356
 visualisation risque
-ask patches [set pcolor scale-color green Risque 0 1]
+ask patches [set pcolor scale-color green Risque 0 (i-Sa_C / 2)]\nask turtles [hide-turtle]\nask patches [set plabel \"\"]
 NIL
 1
 T
@@ -640,10 +590,10 @@ NIL
 1
 
 SLIDER
-181
-578
-353
-611
+234
+243
+406
+276
 i-deltaSa
 i-deltaSa
 0
@@ -653,6 +603,48 @@ i-deltaSa
 1
 NIL
 HORIZONTAL
+
+SWITCH
+268
+62
+418
+95
+i-actionManagers
+i-actionManagers
+0
+1
+-1000
+
+SWITCH
+264
+99
+420
+132
+i-actionControllers
+i-actionControllers
+0
+1
+-1000
+
+TEXTBOX
+238
+143
+388
+161
+Managers
+11
+0.0
+1
+
+TEXTBOX
+247
+288
+397
+306
+Controller
+11
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -996,7 +988,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

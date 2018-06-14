@@ -1,6 +1,6 @@
 to yearly_update
   
-  
+  if actionManagers [
   ask managers [
     
     let cuttedPatches nobody
@@ -51,7 +51,7 @@ to yearly_update
     set meanSensibility mean [sensibility] of myPatches
     
   ]
-  
+  ]
   
   ; Update Production
   if any? Patches with [tpsLatence > 0] [

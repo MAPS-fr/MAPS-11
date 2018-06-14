@@ -1,4 +1,4 @@
-to action_controller
+to action_controller ;; context controller
   
   let lsd Sd_C
   
@@ -6,8 +6,9 @@ to action_controller
   
   let my_patches_to_test lotterie-n (patches with [Production > 0]) (Controleur_Survey_Capacity_Global)
 
-  
+  ;;show my_patches_to_test
   ask my_patches_to_test[
+    ;;show "test en cours"
     sprout-flags 1 [
       set age 0
       set size 2

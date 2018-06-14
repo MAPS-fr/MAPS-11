@@ -1,7 +1,7 @@
 to set-controller
-  ask controllers[
-    set Controleur_Survey_Capacity Controleur_Survey_Capacity_Global
+  create-controllers 1 [
     set Sd Sd_C
     set Sa Sa_C
+    hide-turtle
   ]
 end
