@@ -12,7 +12,7 @@ Max 0.4		0.5		0.1			0.1
 Min 0.1		0.1		0.0			0.0
 Pas 0.1		0.1		0.05		0.05
 N	4		5		3			3		Total: 180
-+ 3 modalités spatiale x 5 repliques x 2 dyn Maladie
++ 3 modalités spatiale x 5 repliques x 2 dyn Maladie x 2 (sans et avec controleur Sd 0.1 Sa 0.2)
 			180 * 3 * 5 * 2 = 5400 simulations
 			
 Effet croisé avec controleurs:
