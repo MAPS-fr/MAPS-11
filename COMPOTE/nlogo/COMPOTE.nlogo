@@ -16,9 +16,10 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
-managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
+managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest pIncome]
 
 ;; files with procedures:
 __includes["setup_globals.nls" "set_patches.nls"
@@ -969,7 +970,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

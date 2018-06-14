@@ -1,3 +1,57 @@
 to yearly_update
   
+  
+  ask managers [
+    
+    let cuttedPatches nobody
+    
+    ; Compute Prod Total per manager
+    set myAnnualProdTot sum [Production] of myPatches 
+    
+    ; Compute Income per patch
+    ask myPatches[
+      set pIncome (Production * Quality)
+    ]
+    
+    ; Compute Income Total per manager
+    set Income sum [pIncome] of myPatches 
+    
+    
+    ; Replanter
+    if myAnnualProdTot < 1 [
+      
+      if myPatches with [Production = 0] != nobody [
+        
+        set cuttedPatches myPatches with [Production = 0] ;
+        ask cuttedPatches [
+          if Sensibility = 0.5 [
+            set Sensibility  0.1
+            set Variety 0.5  ; 0 before
+            
+          ]
+          if Sensibility = 0.9 [
+            set Sensibility  0.5
+            set Variety 0    ; 1 before
+          ]
+          
+          set Quality 1 - Sensibility
+          set Infest 0
+          set detectInfest false
+          
+        ]
+      ]
+
+      
+      ; Update Sa
+      if Sa < 1 [set Sa Sa - 0.1]
+    ]
+  
+  ]
+  
+  
+  ; Update Production
+  ask Patches [set production 0.1]      
+  
+  
+  
 end
