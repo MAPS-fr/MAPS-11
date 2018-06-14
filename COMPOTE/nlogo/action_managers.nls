@@ -53,8 +53,6 @@ to cutMyPatch
     set my_production Production
     set Production 0
     set Variety -1 
-    set Sensibility 0
-    set Quality 0 
     set Infest 0
     set t_PotentielInfest 0 
     set detectInfest false

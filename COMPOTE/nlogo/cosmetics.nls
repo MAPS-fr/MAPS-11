@@ -9,6 +9,7 @@ to update_pcolors
   ask patches with [Infest > 0][
     set pcolor yellow
   ]  
+  ask patches with [Variety = -1][set pcolor white]
 end
 
 to update_colors

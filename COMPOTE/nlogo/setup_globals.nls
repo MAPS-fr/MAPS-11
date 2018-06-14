@@ -21,6 +21,7 @@ to setup_globals
   set sigma radiusInfestMax / 2
   set alpha i-alpha
   set betap i-betap
+  set deltaSd i-deltaSd
 end
 
 to setup_globals_openmole

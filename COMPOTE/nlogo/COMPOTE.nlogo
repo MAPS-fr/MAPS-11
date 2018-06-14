@@ -1,7 +1,7 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
   Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M Sd_C Sa_C deltaSa actionManagers actionControllers
-  Controleur_Survey_Capacity_Global
+  Controleur_Survey_Capacity_Global deltaSd
   Diffuse_Risque_Global
   ;;; other globals:
   sigma rInfest
@@ -9,6 +9,7 @@ globals [
   pct_infected_tot pct_var1 pct_var2
   nb_patchCutted
   nb_patchHidded
+  nb_patchCuttedByC
 ]
 extensions [csv]
 breed [ managers manager]        ; managers of patches (farmers)
@@ -23,7 +24,7 @@ turtles-own [ Sa Sd ]       ; both managers and controllers
 flags-own [ age ]
 
 controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
-managers-own [working_force Income  myAnnualProdTot  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
+managers-own [working_force Income  myAnnualProdTot  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide memProd]     ; managers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque pIncome tpsLatence]
 
 ;; files with procedures:
@@ -190,7 +191,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-100.0
+90.0
 5
 1
 NIL
@@ -222,7 +223,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-10.0
+8.0
 1
 1
 NIL
@@ -234,7 +235,7 @@ INPUTBOX
 168
 124
 i-file_name
-polygon_gem100_rep
+polygon_gem10_rep
 1
 0
 String
@@ -480,7 +481,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.17
+0.4
 0.01
 1
 NIL
@@ -506,32 +507,32 @@ i-Sa_M
 i-Sa_M
 0
 1
-0.56
+0.5
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-231
-312
-403
-345
+232
+350
+404
+383
 i-Sd_C
 i-Sd_C
 0
 1
-0.0
+0.1
 0.01
 1
 NIL
 HORIZONTAL
 
 SLIDER
-225
-349
-397
-382
+226
+387
+398
+420
 i-Sa_C
 i-Sa_C
 0
@@ -558,10 +559,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-218
-390
-420
-423
+219
+428
+421
+461
 i-Diffuse_Risque_Global
 i-Diffuse_Risque_Global
 0
@@ -597,9 +598,9 @@ SLIDER
 i-deltaSa
 i-deltaSa
 0
-1
 0.1
-0.1
+0.05
+0.01
 1
 NIL
 HORIZONTAL
@@ -637,14 +638,68 @@ Managers
 1
 
 TEXTBOX
-247
-288
-397
-306
+248
+326
+398
+344
 Controller
 11
 0.0
 1
+
+SLIDER
+232
+285
+404
+318
+i-deltaSd
+i-deltaSd
+0
+0.1
+0.05
+0.01
+1
+NIL
+HORIZONTAL
+
+PLOT
+997
+363
+1228
+513
+Sd and Sa of managers
+NIL
+NIL
+0.0
+10.0
+0.0
+0.5
+true
+true
+"" ""
+PENS
+"Sd" 1.0 0 -16777216 true "" "plot mean [sd] of managers"
+"Sa" 1.0 0 -955883 true "" "plot mean [sa] of managers"
+
+PLOT
+1239
+368
+1497
+518
+Manager / Controller activities
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"Cut" 1.0 0 -16777216 true "" "plot nb_patchCutted"
+"Hide" 1.0 0 -1184463 true "" "plot nb_patchHidded"
+"CutC" 1.0 0 -2674135 true "" "plot nb_patchCuttedByC"
 
 @#$#@#$#@
 ## WHAT IS IT?

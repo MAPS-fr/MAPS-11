@@ -1,5 +1,5 @@
 to develop_patches ;;patch context
-  ifelse (Infest < 1)[
+  ifelse (Infest < 1 and Variety != -1)[
     let ProdInc rProd * Production * (1 - Production / (1 - Infest) )
     set Production Production + ProdInc
     if ( Production > 1 ) [set Production 1]
