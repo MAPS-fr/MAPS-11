@@ -1,0 +1,55 @@
+
+val seed = Val[Int]
+
+val tpsExtermination = Val[Double]
+val radiusInfestMax = Val[Double]
+val ifile_name = Val[String]
+val ifile_number = Val[Double]
+
+val infecteTotal = Val[Double]
+val infecteVariete1 = Val[Double]
+val infecteVariete2 = Val[Double]
+val ticks = Val[Double]
+
+val cmds = 
+  List(
+    "random-seed ${seed}",
+    "setup-openmole",
+    "go-openmole"
+  )
+
+val compoteTask =
+  NetLogo6Task(workDirectory / "../nlogo/COMPOTE.nlogo", cmds, embedWorkspace= true) set (
+    inputs += seed,
+    outputs += (seed, tpsExtermination, radiusInfestMax, infecteTotal, ifile_number, ifile_name),
+    netLogoInputs += (tpsExtermination, "tpsExtermination"),
+    netLogoInputs += (radiusInfestMax, "radiusInfestMax"),
+    netLogoInputs += (ifile_name, "i-file_name"),
+    netLogoInputs += (ifile_number, "i-file_number"),
+    netLogoOutputs += ("pct_infected_tot", infecteTotal),
+    netLogoOutputs += ("pct_var1", infecteVariete1),
+    netLogoOutputs += ("pct_var2", infecteVariete2),
+    netLogoOutputs += ("ticks", ticks)
+  )
+
+val csvHook = CSVHook(workDirectory / "result/directsampling1_egi.csv", seed, ticks, ifile_name, ifile_number, tpsExtermination, radiusInfestMax, infecteTotal, infecteVariete1, infecteVariete2)
+
+val env = EGIEnvironment("vo.complex-systems.eu")
+
+val sampling = (seed in (UniformDistribution[Int]() take 1)) x
+(tpsExtermination in (20.0 to 300.0 by 20.0)) x
+(radiusInfestMax in (1.0 to 50.0 by 2.0)) x
+(ifile_name in List("random_rep","polygon_gem10_rep","polygon_gem100_rep","polygon_gem1000_rep")) x
+(ifile_number in (1.0 to 30.0 by 1.0))
+    
+    
+val exploration = 
+  DirectSampling(
+    evaluation = compoteTask on env by 40 hook csvHook,
+    sampling = sampling
+    )
+    
+    
+
+exploration
+
