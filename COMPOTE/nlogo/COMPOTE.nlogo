@@ -18,8 +18,7 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 turtles-own [ Sa Sd ]       ; both managers and controllers
 controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
 managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque]
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest pIncome]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque pIncome]
 
 ;; files with procedures:
 __includes["setup_globals.nls" "set_patches.nls"
@@ -158,7 +157,7 @@ i-Svar1
 i-Svar1
 0
 1
-0.6
+0.0
 0.1
 1
 NIL
@@ -173,7 +172,7 @@ i-Svar2
 i-Svar2
 0
 1
-1.0
+0.0
 0.1
 1
 NIL
@@ -188,7 +187,7 @@ i-Svar3
 i-Svar3
 0
 1
-1.0
+0.0
 0.1
 1
 NIL
@@ -200,7 +199,7 @@ INPUTBOX
 68
 500
 i-rProd
-0.25
+0.0
 1
 0
 Number
@@ -214,7 +213,7 @@ i-Iinit
 i-Iinit
 0
 0.1
-0.005
+0.0
 0.001
 1
 NIL
@@ -229,7 +228,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-100.0
+0.0
 5
 1
 NIL
@@ -261,7 +260,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-9.0
+0.0
 1
 1
 NIL
@@ -273,7 +272,7 @@ INPUTBOX
 174
 229
 i-file_name
-polygon_gem1000_rep
+0
 1
 0
 String
@@ -287,7 +286,7 @@ i-nb_managers
 i-nb_managers
 0
 100
-100.0
+0.0
 1
 1
 NIL
@@ -367,7 +366,7 @@ i-alpha
 i-alpha
 0
 2
-1.0
+0.0
 0.1
 1
 NIL
@@ -379,7 +378,7 @@ INPUTBOX
 122
 501
 i-betap
-0.5
+0.0
 1
 0
 Number
@@ -461,7 +460,7 @@ INPUTBOX
 257
 229
 i-file_number
-5.0
+0.0
 1
 0
 Number
@@ -519,7 +518,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.25
+0.0
 0.01
 1
 NIL
@@ -545,7 +544,7 @@ i-Sa_M
 i-Sa_M
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
@@ -590,7 +589,7 @@ i-Controleur_Survey_Capacity_Global
 i-Controleur_Survey_Capacity_Global
 0
 250
-50.0
+0.0
 25
 1
 NIL
@@ -605,7 +604,7 @@ i-Diffuse_Risque_Global
 i-Diffuse_Risque_Global
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
@@ -970,7 +969,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
