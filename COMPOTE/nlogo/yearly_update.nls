@@ -69,6 +69,13 @@ to yearly_update
     ]
   ]
   
+  ask flags[
+    die
+  ]
+  
+  ask patches[
+    set plabel ""
+  ]
   
   
   

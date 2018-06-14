@@ -11,11 +11,17 @@ globals [
   nb_patchHidded
 ]
 extensions [csv]
-breed [ managers manager ]        ; managers of patches (farmers)
+breed [ managers manager]        ; managers of patches (farmers)
 breed [ controllers controller ]  ; controllers of level of desease (from institutions)
+breed [ flags flag ]
 
 ;;;;; State variables :
+
+
 turtles-own [ Sa Sd ]       ; both managers and controllers
+
+flags-own [ age ]
+
 controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
 managers-own [working_force Income  myAnnualProdTot  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque pIncome tpsLatence]
@@ -24,7 +30,8 @@ patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest my
 __includes["setup_globals.nls" "set_patches.nls"
            "set-managers.nls" "set-controller.nls"
            "develop_patches.nls" "aggr_infest.nls"
-           "action_managers.nls" "action_controller.nls"
+           "action_managers.nls" "action_controller.nls" "action_flags.nls"
+           "lotterie.nls"
            "yearly_update.nls" "statistic.nls"
            "cosmetics.nls" ]
 
@@ -69,6 +76,12 @@ to go
   ask patches [aggr_infest]
   if actionManagers [ ask managers [action_managers] ]
   if actionControllers [ ask controllers [action_controller] ]
+
+  ask managers [action_managers]
+  ask controllers [action_controller]
+  ask flags [action_flags]
+  action_controller
+
   if (ticks mod 30) = 0 [   ;show sentence "year" ticks / 30 ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
   ]
@@ -558,7 +571,7 @@ i-Sd_C
 i-Sd_C
 0
 1
-0.1
+0.07
 0.01
 1
 NIL
@@ -588,7 +601,7 @@ i-Controleur_Survey_Capacity_Global
 i-Controleur_Survey_Capacity_Global
 0
 250
-100.0
+50.0
 25
 1
 NIL
@@ -983,7 +996,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
