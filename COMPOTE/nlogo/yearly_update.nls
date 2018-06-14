@@ -27,11 +27,13 @@ to yearly_update
           if Sensibility = 0.5 [
             set Sensibility  0.1
             set Variety 0.5  ; 0 before
+            set tpsLatence 3
             
           ]
           if Sensibility = 0.9 [
             set Sensibility  0.5
-            set Variety 0    ; 1 before
+            set Variety 0  ; 1 before
+            set tpsLatence 3
           ]
           
           set Quality 1 - Sensibility
@@ -40,18 +42,29 @@ to yearly_update
           
         ]
       ]
-
+      
       
       ; Update Sa
       if Sa < 1 [set Sa Sa - 0.1]
     ]
-  
+    
   ]
   
   
   ; Update Production
-  ask Patches [set production 0.1]      
+  if any? Patches with [tpsLatence > 0] [
+    ask Patches with [tpsLatence > 0]
+    [
+      set tpsLatence tpsLatence - 1
+      set Production 0
+    ]      
+  ]
   
-  
+  if any? Patches with [tpsLatence = 0] [
+    ask Patches with [tpsLatence = 0]
+    [ 
+      set Production 0.1
+    ]
+  ]
   
 end
