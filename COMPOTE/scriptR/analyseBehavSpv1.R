@@ -1,5 +1,5 @@
  # Analyse des résultats en section para...
- mt<-read.csv("results/COMPOTE experiment-dynDesease-table.csv",skip=6)
+ mt<-read.csv("../results/COMPOTE experiment-dynDesease-table.csv",skip=6)
  
  colnames(mt)<-c("run","nb_managers","Svar1","radiusInfestMax","alpha","betap","Svar2","rProd","file_number","file_name","tpsExtermination","Svar3","Iinit","week","pct_infected_tot","pct_var1","pct_var2" )
  mt$SpatialModality<-as.numeric(mt$file_name)
