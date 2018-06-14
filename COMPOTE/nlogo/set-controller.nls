@@ -1,11 +1,7 @@
 to set-controller
-  
-  set-controller
-  
-  ask controller 0[
+  ask controllers[
     set Controleur_Survey_Capacity Controleur_Survey_Capacity_Global
     set Sd Sd_C
     set Sa Sa_C
   ]
-  
 end

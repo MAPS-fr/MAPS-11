@@ -1,13 +1,15 @@
 to action_controller
-
+  
   let lsd Sd_C
   
-  let my_patches_to_test (n-of Controleur_Survey_Capacity_Global patches)
+  ;let my_patches_to_test (n-of Controleur_Survey_Capacity_Global patches with [Production > 0])
   
-  show my_patches_to_test
+  let my_patches_to_test (max-n-of (Controleur_Survey_Capacity_Global) (patches with [Production > 0]) [Risque])
   
   ask my_patches_to_test[
-    if infest > lsd [
+    ifelse infest > lsd [
+      
+      set Risque infest
       set Production 0
       set Variety -1 
       set Sensibility 0
@@ -19,6 +21,12 @@ to action_controller
       set pcolor white
       set nb_patchCutted nb_patchCutted + 1
     ]
+    [
+      set Risque 0
+    ]
+    
+    
+    
   ]
   
   ;let my_patches_to_test (my_patches_to_test with true)

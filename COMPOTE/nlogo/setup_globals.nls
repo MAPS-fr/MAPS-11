@@ -12,7 +12,9 @@ to setup_globals
   set Sd_C i-Sd_C
   set Sa_C i-Sa_C
   
+  set Controleur_Survey_Capacity_Global i-Controleur_Survey_Capacity_Global
   
+  set Diffuse_Risque_Global i-Diffuse_Risque_Global
   
   
   set nb_managers i-nb_managers
