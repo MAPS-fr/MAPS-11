@@ -18,35 +18,38 @@ to yearly_update
     
     
     ; Replanter
-    if myAnnualProdTot < 1 [
+    
+    if myPatches with [Production = 0] != nobody [
       
-      if myPatches with [Production = 0] != nobody [
-        
-        set cuttedPatches myPatches with [Production = 0] ;
-        ask cuttedPatches [
-          if Sensibility = 0.5 [
-            set Sensibility  0.1
-            set Variety 0.5  ; 0 before
-            set tpsLatence 3
-            
-          ]
-          if Sensibility = 0.9 [
-            set Sensibility  0.5
-            set Variety 0  ; 1 before
-            set tpsLatence 3
-          ]
-          
-          set Quality 1 - Sensibility
-          set Infest 0
-          set detectInfest false
-          
+      set cuttedPatches myPatches with [Production = 0] ;
+      ask cuttedPatches [
+        if Sensibility = 0.5 [
+          set Sensibility  0.1
+          set Variety 0.5  ; 0 before
+          set tpsLatence 3
         ]
+        if Sensibility = 0.9 [
+          set Sensibility  0.5
+          set Variety 0  ; 1 before
+          set tpsLatence 3
+        ]
+        
+        set Quality 1 - Sensibility
+        set Infest 0
+        set detectInfest false
+        set plabel "new"
+        set pcolor white
+        show "planted"
       ]
+    ]
       
       
       ; Update Sa
       if Sa < 1 [set Sa Sa - 0.1]
-    ]
+
+    
+    ; Update meanSensibility
+    set meanSensibility mean [sensibility] of myPatches
     
   ]
   
@@ -67,4 +70,19 @@ to yearly_update
     ]
   ]
   
+  
+  
+  
+  
 end
+
+
+
+
+
+
+
+
+
+
+
