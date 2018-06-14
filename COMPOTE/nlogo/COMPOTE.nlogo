@@ -14,7 +14,7 @@ globals [
 extensions [csv]
 breed [ managers manager]        ; managers of patches (farmers)
 breed [ controllers controller ]  ; controllers of level of desease (from institutions)
-breed [ flags flag ]
+breed [ flags flag ] ; flags are put on patches that are checked by the controllers. They disapear at the end of the year
 
 ;;;;; State variables :
 
@@ -42,15 +42,16 @@ __includes["setup_globals.nls" "set_patches.nls"
 
 to setup
   clear-all
-  setup_globals
-  set-patches
-  set-managers
-  set-controller
+  setup_globals ; Make a link between the interface variables and the global variables / set a few variables
+  set-patches ; Load the map ,initialize the patches according to the map data (Variety ...), give it to a manager
+  set-managers ;
+  set-controller ; initialize the controler and hide it (visualization of the controller processes are done with the flags)
+
   ;Infest one patch as seed:
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
-  calcul_index
+  calcul_index ; (in statistics.nls)
   reset-ticks
 end
 
@@ -63,7 +64,7 @@ to setup-openmole
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
-  calcul_index
+  calcul_index ; Calcul statistics (in statistics.nls) on the infested patchs
   reset-ticks
 end
 
@@ -74,17 +75,17 @@ end
 to go
 
   ask patches [set t_PotentielInfest 0] ;reset temporary variables
-  ask patches [develop_patches]
-  ask patches [aggr_infest]
-  if actionManagers [ ask managers [action_managers] ]
+  ask patches [develop_patches] ;update the patches according to their own state and propagate the malady on the potential infestation  map
+  ask patches [aggr_infest] ; calcul the probability of getting infested according to the potential infestation map and infest the patch if needed
+  if actionManagers [ ask managers [action_managers] ] ; Managers sample their field and either hide the infested patches or cut them depending on their acceptation rate
   if actionControllers [
-    diffuse risque Diffuse_Risque_Global
-    ask controllers [action_controller]
+    diffuse risque Diffuse_Risque_Global ; The controler update its risque mental map. This map allows him to give to each patch an index of potential risque
+    ask controllers [action_controller] ; Controlers sample all the patches and cut all production if it is too infested
   ]
   if (ticks mod 30) = 0 [   ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
   ]
-  calcul_index
+  calcul_index ; (in statistics.nls)
   cosmetics
   tick
 end
@@ -191,7 +192,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-90.0
+30.0
 5
 1
 NIL
@@ -423,7 +424,7 @@ INPUTBOX
 249
 123
 i-file_number
-10.0
+1.0
 1
 0
 Number
@@ -537,7 +538,7 @@ i-Sa_C
 i-Sa_C
 0
 1
-0.2
+0.1
 0.01
 1
 NIL
@@ -599,7 +600,7 @@ i-deltaSa
 i-deltaSa
 0
 0.1
-0.05
+0.0
 0.01
 1
 NIL
@@ -656,7 +657,7 @@ i-deltaSd
 i-deltaSd
 0
 0.1
-0.05
+0.0
 0.01
 1
 NIL
@@ -1043,7 +1044,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
