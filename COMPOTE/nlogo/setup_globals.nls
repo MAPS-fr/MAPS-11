@@ -12,6 +12,9 @@ to setup_globals
   set Sd_C i-Sd_C
   set Sa_C i-Sa_C
   
+  set actionManagers i-actionManagers
+  set actionControllers i-actionControllers
+  
   set deltaSa i-deltaSa
   
   set Controleur_Survey_Capacity_Global i-Controleur_Survey_Capacity_Global

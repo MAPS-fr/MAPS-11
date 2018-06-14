@@ -1,6 +1,6 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
-  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M Sd_C Sa_C deltaSa
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M Sd_C Sa_C deltaSa actionManagers actionControllers
   Controleur_Survey_Capacity_Global
   Diffuse_Risque_Global
   ;;; other globals:
@@ -67,9 +67,8 @@ to go
   ask patches [set t_PotentielInfest 0] ;reset temporary variables
   ask patches [develop_patches]
   ask patches [aggr_infest]
-  ;ask managers [action_managers]
-  ask controllers [action_controller]
-  action_controller
+  if actionManagers [ ask managers [action_managers] ]
+  if actionControllers [ ask controllers [action_controller] ]
   if (ticks mod 30) = 0 [   ;show sentence "year" ticks / 30 ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
   ]
