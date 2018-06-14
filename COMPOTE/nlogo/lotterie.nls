@@ -1,0 +1,31 @@
+to-report prepare-lotterie [#patchset] 
+  let listID (list)
+  let listVar (list)
+  let resultList (list)
+  let trans count #patchset
+  
+  ask #patchset [
+    set listID lput (word pxcor "-" pycor) listID
+    set listVar lput Risque listVar
+  ]
+  set listVar map [i -> i * trans] listVar
+  set listVar map round listVar
+  set listVar map [i -> i + 1] listVar
+  let i 0
+  foreach listID [
+    repeat item i listVar[
+      set resultList lput item i listID resultList
+    ]
+   set i i + 1 
+  ]
+  report resultList  
+end
+
+to-report lotterie [#patchset]
+  let vID prepare-lotterie #patchset
+  let wh random (length vID)
+  let pID item wh vID
+  let dashpos position "-" pID
+  let preport patch (read-from-string (substring pID 0 dashpos)) (read-from-string (substring pID (dashpos + 1) (length pID)))
+  report preport
+end
