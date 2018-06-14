@@ -1,0 +1,7 @@
+to set-controller
+  create-controllers 1 [
+    set Sd Sd_C
+    set Sa Sa_C
+    hide-turtle
+  ]
+end

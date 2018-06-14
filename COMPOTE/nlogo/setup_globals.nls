@@ -1,15 +1,18 @@
 to setup_globals
-  clear-all
   set rProd i-rProd
-  set Svar1 i-Svar1
-  set Svar2 i-Svar2
-  set Svar3 i-Svar3
+  set Svar1 0.5
+  set Svar2 0.1
+  set Svar3 0.9
   set Iinit i-Iinit
-  
   set Sd_M i-Sd_M
   set Sa_M i-Sa_M
-  
-  
+  set Sd_C i-Sd_C
+  set Sa_C i-Sa_C
+  set actionManagers i-actionManagers
+  set actionControllers i-actionControllers
+  set deltaSa i-deltaSa
+  set Controleur_Survey_Capacity_Global i-Controleur_Survey_Capacity_Global
+  set Diffuse_Risque_Global i-Diffuse_Risque_Global 
   set nb_managers i-nb_managers
   set tpsExtermination i-tpsExtermination
   set rInfest 1 / tpsExtermination
@@ -26,8 +29,9 @@ to setup_globals_openmole
   set Svar2 0.1
   set Svar3 0.9
   set Iinit 0.005
+  set Controleur_Survey_Capacity_Global 50
   set file_name (word i-file_name "_" i-file_number)
-  set nb_managers 0
+  set nb_managers 100
   set rInfest 1 / tpsExtermination
   set sigma radiusInfestMax / 2
   set alpha 1

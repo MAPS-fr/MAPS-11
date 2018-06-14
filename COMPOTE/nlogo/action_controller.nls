@@ -1,3 +1,57 @@
-to action_controller
+to action_controller ;; context controller
+  
+  let lsd Sd_C
+  
+  ;let my_patches_to_test (n-of Controleur_Survey_Capacity_Global patches with [Production > 0])
+  
+  let my_patches_to_test lotterie-n (patches with [Production > 0]) (Controleur_Survey_Capacity_Global)
+
+  ;;show my_patches_to_test
+  ask my_patches_to_test[
+    ;;show "test en cours"
+    sprout-flags 1 [
+      set age 0
+      set size 2
+      set color scale-color cyan  (ticks mod 30) 0 30
+      set shape "flag"	
+    ]
+    ifelse infest > lsd [
+      set Risque infest
+      set Production 0
+      set Variety -1 
+      set Sensibility 0
+      set Quality 0 
+      set Infest 0
+      set t_PotentielInfest 0 
+      set detectInfest false
+      set plabel "cut"
+      set pcolor white
+      set nb_patchCutted nb_patchCutted + 1
+    ]
+    [
+      set Risque 0
+    ]
+    
+    
+    
+  ]
+  
+  ;let my_patches_to_test (my_patches_to_test with true)
   
 end
+
+to cutAPatch
+  ask myPatchToCut [
+    set Production 0
+    set Variety -1 
+    set Sensibility 0
+    set Quality 0 
+    set Infest 0
+    set t_PotentielInfest 0 
+    set detectInfest false
+    set plabel "cut"
+    set pcolor white
+    set nb_patchCutted nb_patchCutted + 1
+  ]
+end
+

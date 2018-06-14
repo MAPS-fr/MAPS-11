@@ -1,3 +1,94 @@
 to yearly_update
   
+  if actionManagers [
+  ask managers [
+    
+    let cuttedPatches nobody
+    
+    ; Compute Prod Total per manager
+    set myAnnualProdTot sum [Production] of myPatches 
+    
+    ; Compute Income per patch
+    ask myPatches[
+      set pIncome (Production * Quality)
+    ]
+    
+    ; Compute Income Total per manager
+    set Income sum [pIncome] of myPatches 
+    
+    
+    ; Replanter
+    
+    if myPatches with [Production = 0] != nobody [
+      
+      set cuttedPatches myPatches with [Production = 0] ;
+      ask cuttedPatches [
+        if Sensibility = 0.5 [
+          set Sensibility  0.1
+          set Variety 0.5  ; 0 before
+          set tpsLatence 3
+        ]
+        if Sensibility = 0.9 [
+          set Sensibility  0.5
+          set Variety 0  ; 1 before
+          set tpsLatence 3
+        ]
+        
+        set Quality 1 - Sensibility
+        set Infest 0
+        set detectInfest false
+        set plabel "new"
+        set pcolor white
+      ]
+    ]
+    
+    
+    ; Update Sa
+    if Sa < 1 [set Sa Sa - deltaSa]
+    
+    
+    ; Update meanSensibility
+    set meanSensibility mean [sensibility] of myPatches
+    
+  ]
+  ]
+  
+  ; Update Production
+  if any? Patches with [tpsLatence > 0] [
+    ask Patches with [tpsLatence > 0]
+    [
+      set tpsLatence tpsLatence - 1
+      set Production 0
+    ]      
+  ]
+  
+  if any? Patches with [tpsLatence = 0] [
+    ask Patches with [tpsLatence = 0]
+    [ 
+      set Production 0.1
+    ]
+  ]
+  
+  ask flags[
+    die
+  ]
+  
+  ask patches[
+    set plabel ""
+  ]
+  
+  
+  
+  
 end
+
+
+
+
+
+
+
+
+
+
+

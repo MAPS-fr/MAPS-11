@@ -16,6 +16,7 @@ to set-patches
     set Infest 0
     set detectInfest false
     set myneighbors patches with [distance myself < radiusInfestMax]
+    set tpsLatence 0
     ;let myneighborsdistance 0
   ]
   
