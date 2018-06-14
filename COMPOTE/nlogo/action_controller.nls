@@ -4,9 +4,16 @@ to action_controller
   
   ;let my_patches_to_test (n-of Controleur_Survey_Capacity_Global patches with [Production > 0])
   
-  let my_patches_to_test (max-n-of (Controleur_Survey_Capacity_Global) (patches with [Production > 0]) [Risque])
+  let my_patches_to_test lotterie-n (patches with [Production > 0]) (Controleur_Survey_Capacity_Global)
+
   
   ask my_patches_to_test[
+    sprout-flags 1 [
+      set age 0
+      set size 2
+      set color scale-color cyan  (ticks mod 30) 0 30
+      set shape "flag"	
+    ]
     ifelse infest > lsd [
       set Risque infest
       set Production 0
