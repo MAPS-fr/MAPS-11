@@ -44,7 +44,7 @@ to yearly_update
     
     
     ; Update Sa
-    if Sa < 1 [set Sa Sa - 0.1]
+    if Sa < 1 [set Sa Sa - deltaSa]
     
     
     ; Update meanSensibility

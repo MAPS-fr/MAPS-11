@@ -8,7 +8,6 @@ to action_controller
   
   ask my_patches_to_test[
     ifelse infest > lsd [
-      
       set Risque infest
       set Production 0
       set Variety -1 

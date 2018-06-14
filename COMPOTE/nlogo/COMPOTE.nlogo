@@ -1,6 +1,6 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
-  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M Sd_C Sa_C
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M Sd_C Sa_C deltaSa
   Controleur_Survey_Capacity_Global
   Diffuse_Risque_Global
   ;;; other globals:
@@ -626,6 +626,21 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+181
+578
+353
+611
+i-deltaSa
+i-deltaSa
+0
+1
+0.1
+0.1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

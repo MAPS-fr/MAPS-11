@@ -8,9 +8,11 @@ to setup_globals
   
   set Sd_M i-Sd_M
   set Sa_M i-Sa_M
-  
+    
   set Sd_C i-Sd_C
   set Sa_C i-Sa_C
+  
+  set deltaSa i-deltaSa
   
   set Controleur_Survey_Capacity_Global i-Controleur_Survey_Capacity_Global
   
