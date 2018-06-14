@@ -1,6 +1,6 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
-  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M Sd_C Sa_C Controleur_Survey_Capacity_Global
   ;;; other globals:
   sigma rInfest
   ;;; calculated global
@@ -15,11 +15,12 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
 managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
-controllers-own [  ]        ; controllers only
+controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest ]
 
 ;; files with procedures:
-__includes["setup_globals.nls" "set_patches.nls" "set-managers.nls"
+__includes["setup_globals.nls" "set_patches.nls"
+           "set-managers.nls" "set-controller.nls"
            "develop_patches.nls" "aggr_infest.nls"
            "action_managers.nls" "action_controller.nls"
            "yearly_update.nls" "statistic.nls"
@@ -33,6 +34,7 @@ to setup
   setup_globals
   set-patches
   set-managers
+  set-controller
   ;Infest one patch as seed:
   ask one-of patches [
     set Infest Sensibility * Iinit
@@ -61,7 +63,8 @@ to go
   ask patches [set t_PotentielInfest 0] ;reset temporary variables
   ask patches [develop_patches]
   ask patches [aggr_infest]
-  ask managers [action_managers]
+  ;ask managers [action_managers]
+  ask controllers [action_controller]
   action_controller
   if (ticks mod 30) = 0 [   ;show sentence "year" ticks / 30 ; happen every 30 ticks at the end of the year of vegetative production
     yearly_update
@@ -511,7 +514,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.25
+0.1
 0.01
 1
 NIL
@@ -537,7 +540,52 @@ i-Sa_M
 i-Sa_M
 0
 1
-1.0
+0.15
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+191
+345
+431
+378
+i-Controleur_Survey_Capacity
+i-Controleur_Survey_Capacity
+25
+250
+25.0
+25
+1
+NIL
+HORIZONTAL
+
+SLIDER
+190
+403
+362
+436
+i-Sd_C
+i-Sd_C
+0
+1
+0.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+193
+461
+365
+494
+i-Sa_C
+i-Sa_C
+0
+1
+0.0
 0.01
 1
 NIL

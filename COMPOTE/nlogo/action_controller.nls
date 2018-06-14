@@ -1,3 +1,42 @@
 to action_controller
+
+  let lsd Sd_C
+  
+  let my_patches_to_test (n-of Controleur_Survey_Capacity_Global patches)
+  
+  show my_patches_to_test
+  
+  ask my_patches_to_test[
+    if infest > lsd [
+      set Production 0
+      set Variety -1 
+      set Sensibility 0
+      set Quality 0 
+      set Infest 0
+      set t_PotentielInfest 0 
+      set detectInfest false
+      set plabel "cut"
+      set pcolor white
+      set nb_patchCutted nb_patchCutted + 1
+    ]
+  ]
+  
+  ;let my_patches_to_test (my_patches_to_test with true)
   
 end
+
+to cutAPatch
+  ask myPatchToCut [
+    set Production 0
+    set Variety -1 
+    set Sensibility 0
+    set Quality 0 
+    set Infest 0
+    set t_PotentielInfest 0 
+    set detectInfest false
+    set plabel "cut"
+    set pcolor white
+    set nb_patchCutted nb_patchCutted + 1
+  ]
+end
+

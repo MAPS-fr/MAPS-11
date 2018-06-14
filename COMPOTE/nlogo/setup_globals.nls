@@ -9,6 +9,11 @@ to setup_globals
   set Sd_M i-Sd_M
   set Sa_M i-Sa_M
   
+  set Sd_C i-Sd_C
+  set Sa_C i-Sa_C
+  
+  
+  
   
   set nb_managers i-nb_managers
   set tpsExtermination i-tpsExtermination
