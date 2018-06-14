@@ -1,0 +1,93 @@
+
+val seed = Val[Int]
+
+val tpsExtermination = Val[Double]
+val radiusInfestMax = Val[Double]
+val ifile_name = Val[String]
+val ifile_number = Val[Double]
+
+val infecteTotal = Val[Double]
+val infecteVariete1 = Val[Double]
+val infecteVariete2 = Val[Double]
+
+val SdM = Val[Double]
+val SdC = Val[Double]
+val SaM = Val[Double]
+val SaC = Val[Double]
+val delatSa = Val[Double]
+val actionManager = Val[Boolean]
+val actionController = Val[Boolean]
+val diffRisqueGlobal = Val[Double]
+
+
+val cmds = 
+  List(
+    "random-seed ${seed}",
+    "setup-openmole",
+    "go-openmole"
+  )
+
+val compoteTask =
+  NetLogo6Task(workDirectory / "../nlogo/COMPOTE.nlogo", cmds, embedWorkspace= true) set (
+    inputs += seed,
+    outputs += (seed, tpsExtermination, radiusInfestMax, infecteTotal, ifile_number, ifile_name,
+    SdM,SdC,SaM,SaC,delatSa,actionManager,actionController,diffRisqueGlobal),
+    netLogoInputs += (tpsExtermination, "tpsExtermination"),
+    netLogoInputs += (radiusInfestMax, "radiusInfestMax"),
+    netLogoInputs += (ifile_name, "i-file_name"),
+    netLogoInputs += (ifile_number, "i-file_number"),
+    netLogoInputs += (SdM, "Sd_M"),
+    netLogoInputs += (SdC, "Sd_C"),
+    netLogoInputs += (SaM, "Sa_M"),
+    netLogoInputs += (SaC, "Sa_C"),
+    netLogoInputs += (delatSa, "deltaSa"),
+    netLogoInputs += (actionManager, "actionManagers"),
+    netLogoInputs += (actionController, "actionControllers"),
+    netLogoInputs += (diffRisqueGlobal, "Diffuse_Risque_Global"),
+    //OUTPUT
+    netLogoOutputs += ("pct_infected_tot", infecteTotal),
+    netLogoOutputs += ("pct_var1", infecteVariete1),
+    netLogoOutputs += ("pct_var2 ", infecteVariete2),
+    //FIXED variable
+    actionManager := true,
+    actionController := true
+  )
+
+val csvHook = CSVHook(workDirectory / "result/exploration_test.csv", 
+            seed, ifile_name, ifile_number, tpsExtermination, radiusInfestMax, 
+            SdM, SdC, SaM, SaC, delatSa, actionManager, actionController, diffRisqueGlobal,
+            infecteTotal,infecteVariete1, infecteVariete2)
+
+/*val exploration = 
+  DirectSampling(
+    evaluation = Replication(compoteTask hook csvHook, seed, 1),
+    sampling = (tpsExtermination in (20 to 30 by 10)) x
+    (radiusInfestMax in (49 to 50 by 1)) x
+    (ifile_name in List("random_rep","polygon_gem10_rep","polygon_gem100_rep","polygon_gem1000_rep")) x
+    (SdM in (0.0 to 1.0 by 0.2)) x
+    (SdC in (0.0 to 1.0 by 0.2)) x
+    (SaM in (0.0 to 1.0 by 0.2)) x
+    (SaC in (0.0 to 1.0 by 0.2)) x
+    (delatSa in (0.0 to 1.0 by 0.2)) x
+    (diffRisqueGlobal in (0.0 to 1.0 by 0.2))
+  )
+*/
+
+val exploration = 
+  DirectSampling(
+    evaluation = Replication(compoteTask hook csvHook, seed, 1),
+    sampling = (tpsExtermination in (180.0 to 190.0 by 10.0)) x
+    (radiusInfestMax in (3.0 to 4.0 by 1.0)) x
+    (ifile_number in (29.0 to 30.0 by 1.0))x
+    (ifile_name in List("random_rep","polygon_gem10_rep")) x
+    (SdM in (0.8 to 1.0 by 0.2)) x
+    (SdC in (0.8 to 1.0 by 0.2)) x
+    (SaM in (0.8 to 1.0 by 0.2)) x
+    (SaC in (0.8 to 1.0 by 0.2)) x
+    (delatSa in (0.8 to 1.0 by 0.2)) x
+    (diffRisqueGlobal in (0.8 to 1.0 by 0.2))
+  )
+  
+
+exploration
+
