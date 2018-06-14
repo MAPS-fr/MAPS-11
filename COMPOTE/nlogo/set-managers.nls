@@ -10,6 +10,7 @@ to set-managers
       set myPatchToCut nobody
       set myPatchesInfested no-patches
       set Sd Sd_M
+      set Sa Sa_M
   ]
   
 ; DONE by set_patches ask managers[

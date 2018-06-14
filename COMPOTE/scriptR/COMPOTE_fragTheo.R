@@ -1,4 +1,4 @@
-#
+﻿#
 # setwd(dir = "~/Téléchargements/")
 # build()
 # install.packages("rasterFrag_0.0-1.tar.gz", repos = NULL, type = "source")
@@ -31,6 +31,6 @@ for(i in 1:length(csv.l)){
 my.df <- as.data.frame(my.df)
 names(my.df)<-c("file","if1","if2","if3")
 
-write.csv(my.df, file = "nlogo/result/fragmentation_space.csv", row.names = T)
+write.csv(my.df, file = "results/fragmentation_space.csv", row.names = T)
 
 

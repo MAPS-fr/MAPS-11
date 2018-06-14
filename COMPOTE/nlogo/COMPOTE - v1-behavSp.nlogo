@@ -1,12 +1,10 @@
 globals [
   ;;; globals initialized on interface (with i- and setup on setup_globals.nls):
-  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap Sd_M Sa_M
+  Iinit rProd Svar1 Svar2 Svar3 tpsExtermination radiusInfestMax file_name nb_managers alpha betap
   ;;; other globals:
   sigma rInfest
   ;;; calculated global
   pct_infected_tot pct_var1 pct_var2
-  nb_patchCutted
-  nb_patchHidded
 ]
 extensions [csv]
 breed [ managers manager ]        ; managers of patches (farmers)
@@ -14,9 +12,9 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
-managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
+managers-own [ Income ]     ; managers only
 controllers-own [  ]        ; controllers only
-patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest ]
+patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors]
 
 ;; files with procedures:
 __includes["setup_globals.nls" "set_patches.nls" "set-managers.nls"
@@ -81,10 +79,10 @@ to go-openmole
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-471
-23
-979
-532
+313
+21
+821
+530
 -1
 -1
 5.0
@@ -150,7 +148,7 @@ i-Svar1
 i-Svar1
 0
 1
-0.6
+0.5
 0.1
 1
 NIL
@@ -165,7 +163,7 @@ i-Svar2
 i-Svar2
 0
 1
-1.0
+0.1
 0.1
 1
 NIL
@@ -180,7 +178,7 @@ i-Svar3
 i-Svar3
 0
 1
-1.0
+0.9
 0.1
 1
 NIL
@@ -221,7 +219,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-100.0
+180.0
 5
 1
 NIL
@@ -253,7 +251,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-24.0
+32.0
 1
 1
 NIL
@@ -279,7 +277,7 @@ i-nb_managers
 i-nb_managers
 0
 100
-100.0
+0.0
 1
 1
 NIL
@@ -296,9 +294,9 @@ Parameters that may not change much:
 1
 
 PLOT
-988
+829
 23
-1242
+1083
 202
 Infestation levels of infested plots
 NIL
@@ -314,9 +312,9 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot mean [Infest] of patches with [Infest > 0]"
 
 PLOT
-1249
+1090
 22
-1501
+1342
 203
 Number of infested plots
 NIL
@@ -397,9 +395,9 @@ plots parameters:
 1
 
 BUTTON
-992
+833
 212
-1142
+983
 245
 visualisation potentiel
 ask patches [set pcolor scale-color green t_PotentielInfest 0 1]
@@ -414,9 +412,9 @@ NIL
 1
 
 BUTTON
-993
+834
 249
-1143
+984
 282
 visualisation Infestation
 ask patches [set pcolor scale-color orange Infest 0 1]
@@ -431,9 +429,9 @@ NIL
 1
 
 BUTTON
-997
+838
 297
-1138
+979
 330
 visualisation variety
 update_pcolors
@@ -453,15 +451,15 @@ INPUTBOX
 257
 229
 i-file_number
-5.0
+7.0
 1
 0
 Number
 
 MONITOR
-1149
+990
 211
-1254
+1095
 256
 NIL
 pct_infected_tot
@@ -470,9 +468,9 @@ pct_infected_tot
 11
 
 MONITOR
-1260
+1101
 211
-1323
+1164
 256
 NIL
 pct_var1
@@ -481,67 +479,15 @@ pct_var1
 11
 
 MONITOR
-1330
+1171
 210
-1393
+1234
 255
 NIL
 pct_var2
 17
 1
 11
-
-MONITOR
-1192
-298
-1306
-343
-nb_patchCutted
-nb_patchCutted
-17
-1
-11
-
-SLIDER
-188
-247
-360
-280
-i-Sd_M
-i-Sd_M
-0
-1
-0.25
-0.01
-1
-NIL
-HORIZONTAL
-
-MONITOR
-1183
-370
-1297
-415
-NIL
-nb_patchHidded
-17
-1
-11
-
-SLIDER
-190
-294
-362
-327
-i-Sa_M
-i-Sa_M
-0
-1
-1.0
-0.01
-1
-NIL
-HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -885,7 +831,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -903,7 +849,14 @@ NetLogo 6.0.3
     <enumeratedValueSet variable="i-Svar1">
       <value value="0.5"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="i-radiusInfestMax" first="1" step="1" last="25"/>
+    <enumeratedValueSet variable="i-radiusInfestMax">
+      <value value="1"/>
+      <value value="2"/>
+      <value value="4"/>
+      <value value="8"/>
+      <value value="16"/>
+      <value value="32"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="i-alpha">
       <value value="1"/>
     </enumeratedValueSet>
@@ -916,14 +869,14 @@ NetLogo 6.0.3
     <enumeratedValueSet variable="i-rProd">
       <value value="0.25"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="i-file_number" first="1" step="1" last="30"/>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="10"/>
     <enumeratedValueSet variable="i-file_name">
       <value value="&quot;random_rep&quot;"/>
       <value value="&quot;polygon_gem10_rep&quot;"/>
       <value value="&quot;polygon_gem100_rep&quot;"/>
       <value value="&quot;polygon_gem1000_rep&quot;"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="i-tpsExtermination" first="20" step="20" last="200"/>
+    <steppedValueSet variable="i-tpsExtermination" first="30" step="30" last="180"/>
     <enumeratedValueSet variable="i-Svar3">
       <value value="0.9"/>
     </enumeratedValueSet>
