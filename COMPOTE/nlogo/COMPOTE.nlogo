@@ -17,7 +17,7 @@ breed [ controllers controller ]  ; controllers of level of desease (from instit
 ;;;;; State variables :
 turtles-own [ Sa Sd ]       ; both managers and controllers
 controllers-own [ Controleur_Survey_Capacity ]        ; controllers only
-managers-own [working_force Income  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
+managers-own [working_force Income  myAnnualProdTot  myPatches  meanSensibility  myPatchToCut  myPatchesInfested myPatchToHide]     ; managers only
 patches-own [ Variety Sensibility Quality Production Infest t_PotentielInfest myManager myneighbors detectInfest Risque pIncome]
 
 ;; files with procedures:
