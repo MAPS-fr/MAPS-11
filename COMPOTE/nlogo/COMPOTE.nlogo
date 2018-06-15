@@ -52,12 +52,8 @@ to setup
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
-<<<<<<< HEAD
   set closestManagerToInit min-one-of managers [distance one-of patches with [infest != 0]]
-  calcul_index
-=======
   calcul_index ; (in statistics.nls)
->>>>>>> c13951db185ec6d2fc1f82c1d6ce07bc2e601c89
   reset-ticks
 end
 
@@ -70,12 +66,8 @@ to setup-openmole
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
-<<<<<<< HEAD
   set closestManagerToInit min-one-of managers [distance one-of patches with [infest != 0]]
-  calcul_index
-=======
   calcul_index ; Calcul statistics (in statistics.nls) on the infested patchs
->>>>>>> c13951db185ec6d2fc1f82c1d6ce07bc2e601c89
   reset-ticks
 end
 
@@ -203,7 +195,7 @@ i-tpsExtermination
 i-tpsExtermination
 0
 300
-30.0
+60.0
 5
 1
 NIL
@@ -235,7 +227,7 @@ i-radiusInfestMax
 i-radiusInfestMax
 1
 100
-8.0
+4.0
 1
 1
 NIL
@@ -247,7 +239,7 @@ INPUTBOX
 168
 124
 i-file_name
-polygon_gem10_rep
+polygon_gem100_rep
 1
 0
 String
@@ -435,7 +427,7 @@ INPUTBOX
 249
 123
 i-file_number
-1.0
+5.0
 1
 0
 Number
@@ -493,7 +485,7 @@ i-Sd_M
 i-Sd_M
 0
 1
-0.4
+0.1
 0.01
 1
 NIL
@@ -519,7 +511,7 @@ i-Sa_M
 i-Sa_M
 0
 1
-0.5
+0.1
 0.01
 1
 NIL
@@ -534,7 +526,7 @@ i-Sd_C
 i-Sd_C
 0
 1
-0.1
+0.05
 0.01
 1
 NIL
@@ -549,7 +541,7 @@ i-Sa_C
 i-Sa_C
 0
 1
-0.1
+0.05
 0.01
 1
 NIL
@@ -1079,7 +1071,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
