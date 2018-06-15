@@ -10,6 +10,7 @@ globals [
   nb_patchCutted
   nb_patchHidded
   nb_patchCuttedByC
+  closestManagerToInit
 ]
 extensions [csv]
 breed [ managers manager]        ; managers of patches (farmers)
@@ -50,6 +51,7 @@ to setup
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
+  set closestManagerToInit min-one-of managers [distance one-of patches with [infest != 0]]
   calcul_index
   reset-ticks
 end
@@ -63,6 +65,7 @@ to setup-openmole
   ask one-of patches [
     set Infest Sensibility * Iinit
   ]
+  set closestManagerToInit min-one-of managers [distance one-of patches with [infest != 0]]
   calcul_index
   reset-ticks
 end
@@ -700,6 +703,30 @@ PENS
 "Cut" 1.0 0 -16777216 true "" "plot nb_patchCutted"
 "Hide" 1.0 0 -1184463 true "" "plot nb_patchHidded"
 "CutC" 1.0 0 -2674135 true "" "plot nb_patchCuttedByC"
+
+PLOT
+1510
+243
+1867
+518
+Incomes (from different points of view)
+NIL
+NIL
+0.0
+10.0
+0.0
+1.0
+true
+true
+"" ""
+PENS
+"Mean of managers" 1.0 0 -16777216 true "" "plot mean [Income] of managers / 100"
+"Mean of plots" 1.0 0 -7500403 true "" "plot mean [pIncome] of patches"
+"Min of managers" 1.0 0 -2674135 true "" "plot min [Income] of managers / 100"
+"Min of plots" 1.0 0 -955883 true "" "plot min [pIncome] of patches"
+"Max of managers" 1.0 0 -13840069 true "" "plot max [Income] of managers / 100"
+"Max of plots" 1.0 0 -8732573 true "" "plot max [pIncome] of patches"
+"Closest manager to init" 1.0 0 -2064490 true "" "plot [Income] of closestManagerToInit / 100"
 
 @#$#@#$#@
 ## WHAT IS IT?
