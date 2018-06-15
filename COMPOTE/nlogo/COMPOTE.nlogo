@@ -1061,7 +1061,6 @@ NetLogo 6.0.2
     <enumeratedValueSet variable="i-Svar1">
       <value value="0.5"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="i-radiusInfestMax" first="1" step="1" last="25"/>
     <enumeratedValueSet variable="i-alpha">
       <value value="1"/>
     </enumeratedValueSet>
@@ -1074,14 +1073,22 @@ NetLogo 6.0.2
     <enumeratedValueSet variable="i-rProd">
       <value value="0.25"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="i-file_number" first="1" step="1" last="30"/>
+    <enumeratedValueSet variable="i-radiusInfestMax">
+      <value value="1"/>
+      <value value="2"/>
+      <value value="4"/>
+      <value value="8"/>
+      <value value="16"/>
+      <value value="32"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="i-file_number" first="1" step="1" last="10"/>
     <enumeratedValueSet variable="i-file_name">
       <value value="&quot;random_rep&quot;"/>
       <value value="&quot;polygon_gem10_rep&quot;"/>
       <value value="&quot;polygon_gem100_rep&quot;"/>
       <value value="&quot;polygon_gem1000_rep&quot;"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="i-tpsExtermination" first="20" step="20" last="200"/>
+    <steppedValueSet variable="i-tpsExtermination" first="30" step="30" last="180"/>
     <enumeratedValueSet variable="i-Svar3">
       <value value="0.9"/>
     </enumeratedValueSet>
