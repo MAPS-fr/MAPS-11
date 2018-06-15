@@ -7,7 +7,7 @@ to set-patches
   ask patches[
     let row max-pycor - pycor
     let column pxcor - min-pxcor
-    set Variety item column item row matrix
+    set Variety item column item row matrix ; gives to the Variety the value of this patch in the csv
     set pcolor ifelse-value (Variety = 0.5 )[red][ifelse-value (Variety = 1) [green][blue]]
     set Sensibility ifelse-value (Variety = 0.5) [Svar2][ifelse-value (Variety = 1) [Svar3][Svar1]]
     set Quality Sensibility

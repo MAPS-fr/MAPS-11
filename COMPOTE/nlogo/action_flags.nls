@@ -1,3 +1,0 @@
-to action_flags
-  set age (age + 1)
-end
