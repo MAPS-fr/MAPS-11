@@ -91,7 +91,7 @@
    }   
    
  
-   mg2<-read.csv("../results/SMCI_zebulon.csv")#,skip=6) # sans controlleur
+   mg2<-read.csv("../results/SMCI_zebulon.csv")#,skip=6) # avec controlleur
    mg2$SpatialModality<-as.numeric(mg2$ifile_name) 
  
     par(mfrow=c(2,5))
@@ -113,7 +113,9 @@
    }
 
 
-
+wrong=which(as.vector(with(mg2,by(infecteTotal,list(SdM,SaM,deltaSa,deltaSd,SpatialModality,tpsExtermination,radiusInfestMax),length)))!=5)
+as.vector(with(mg2,by(infecteTotal,list(SdM,SaM,deltaSa,deltaSd,SpatialModality,tpsExtermination,radiusInfestMax),mean)))[wrong]
+#spatial modality of random distribution of patches, but no clear pattern why they bug ?!?
 
 
 
