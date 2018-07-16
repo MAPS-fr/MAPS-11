@@ -3,30 +3,76 @@
 
 **Auteurs** : Etienne Delay, Cyril Piou, David Sheeren, Doryan Kaced, Sébastien Rey Coyrehourcq.
 
+# Avant-propos
+copie du [hackmd](https://hackmd.io/Itvx7mtlR2uh_j0Zdxzo6A?both)
 
+## Todo fiche
 
-# Lexique
+- Introduction du contexte de la réalisation de ce modèle (MAPS 11)
+- Overview, diagramme activité, partie processus : _david seb (pour inkscape)_
+- replacer les hypothèses dans objectifs du modele + description ds sous modeles + reprise dans le plan de simulation _cyril_
+- design concept (repasser dessus et mettre dans l'ordre) : _doryan_
+-- description *triade* et *triade de triade* (ref Bruno B + JP Muller?) dc dans grand principe dans Design Concept (_Etienne_)
+-- Controleur apprend, paysan s'adapte (_David_)
+-- pas de prediction
+-- Ajout interaction / indirecte
+- partie explo à détailler : _etienne, cyril, seb_
+- discussion résultats : _tous_
+
+## Lexique
 Variété = relatif à une espèce (ex : peuplier de variété Beaupré, I35...)
 Unité spatiale = 1 peuplement homogène/hétérogène = un ensemble d'arbre d'une même variété
 
 Risque = Probabilité d'un évènement * l'effet négatif de cet événement
 
+## brouillon (pour garder du texte avant de l'effacer...)
+
+**Hypothèses:**
+
+Nous nous sommes intéresser à 3 jeux d'hypothèses :
+
+* N°1
+    * H0 Controleur bouge par secteur Et/Ou Transect
+* N°2
+    * H0 Acteurs proprio cpt homogène
+    * H1 Acteurs proprio cpt hétérogène
+* N°3
+    * H0 Aléatoires sur variété et dans l'espace
+    * H1 Structuration spatiale
+    * H2 complexité sur propriétaire
+
+~~L'agent qui va observer les peuplements va être amené à prendre des décisions sur une connaissance du système non-intuitif.~~
+
+
+# Introduction
+
+Le travail suivant s'inscrit dans le cadre du 11ème atelier [MAPS dédié aux risques](https://maps.hypotheses.org/). Les objectifs du modèle, sa structure (entités, processus, initialisation, etc.) ont été discuté en groupe puis l'implémentation a été faite en utilisant [Github](https://github.com/MAPS-fr/MAPS-11/tree/master/COMPOTE) pour du codage en parallèle. Les explorations du modèle ont été réalisées à l'aide de la plateforme [OpenMOLE](https://www.openmole.org/).
+
+Le document qui suit présente l'ODD du modèle COMPOTE, le plan de simulation, les résultats de ces simulations et les enseignements que l'on peut en tirer.
+
 # ODD
 
-## Overview
+## 1 - Objectifs
 
-### Objectifs
+Ce modèle - COMPOTE - a pour objectif de simuler la dynamique de propagation de maladies végétales dans des systèmes cultivés (vigne, vergers, plantations arborées) et de mesurer l'impact des risques inhérents aux pratiques individuelles des acteurs sur cette dynamique. De façon plus précise, le modèle vise à :
 
-Quels sont les risques inhérents aux pratiques individuelles dans la dynamique de propagation des maladies végétales sur des territoires complexes ?
-
-- Explorer l'influence de la composition et de la configuration spatiale du paysage
+- Explorer l'influence de la composition et de la configuration spatiale du paysage sur la propagation de la maladie
 - Comprendre et quantifier l'influence des pratiques individuelles divergentes sur le fonctionnement du système
-- Explorer la diversité des réponses institutionnelles en considérant la santé des plantes comme un bien commun
-- Explorer l'effet du risque de non-détection de la maladie (échantillonnage trop faible) sur les pertes ou bénéfices individuelles et collectif
+- Explorer les effets d'une réponse institutionnelle et de son efficacité sur l'enrayement de la maladie
+- Explorer les effets d'une prise de risque par volonté de dissimulation de la maladie ou les effets liés à l'absence de détection de cette maladie, sur les pertes et bénéfices individuels et collectif.
 
-L'agent qui va observer les peuplements va être amené à prendre des décisions sur une connaissance du système non-intuitif.
+Le modèle n'est pas spécifique à une maladie particulière et celle-ci se disperse avec ou sans la présence d'un hôte qui n'est pas explicitement représenté.
 
-## Entités et variables d'état
+
+## 2 - Entités et variables d'état
+
+Le modèle est composé d'espaces cultivés (entité "Parcelle") appartenant à des agents gestionnaires (entité "Gestionnaire") et suivis par des agents contrôleurs (entité "Contrôleur"). Ces différentes entités sont situées dans l'espace.
+
+Les parcelles sont caractérisées par différentes propriétés (cf. diagramme de classes UML) dont
+
+
+
+
 
 Environnement
 * précipitation
@@ -67,13 +113,13 @@ Triade :
 Contrôleur <-> Gestionnaires : Une remontée d'information lors des éradications faites par le gestionnaire => MAJ carte de potentiels du contrôleur (préalable il ne faut pas punir), et potentiellement accès à des nouvelles zones infestation. Des gestionnaires pourraient donc réduire leur seuil d'acceptabilité en fonction du passage du contrôleur (il prend + risque au bénéfice d'une meilleure gestion globale).
 
 
-## Echelles
+## 3 - Echelles
 - Etendue / résolution spatiale : l'espace est représenté par une grille de cellules de 100 x 100 (avec 1 cellule = 1ha)
 - temporelle : Pas de temps d'une semaine, horizon de 15 ans, 1 pas de temps interactif par an (bilan production)
 - 1 propriétaire = 100 ha (10 x 10 cellules chacun)
 
 
-## Processus  
+## 4 - Processus  
 
 **Parcelle/Maladie**
 Sensibilité (S) = $f(Q)$
@@ -105,7 +151,7 @@ Seuil d'acceptabilité de la maladie + mémoire
 * ex pas beaucoup sur parcelle qualité je n'agis pas, si j'en perçoit beaucoup je coupe
 
 
-### Planification de l'initialisation
+### 4.1 - Planification de l'initialisation
 
 ```
 Initialiser les parcelles selon un fichier de carte
@@ -118,7 +164,7 @@ pas de temps
 Infester une parcelle au hasard
 ```
 
-### Planification de chaque pas de temps
+### 4.2 - Planification de chaque pas de temps
 
 ```
 Met à jour l'état des parcelles.
@@ -139,7 +185,7 @@ Le contrôleur construit sa carte mentale du risque de maladie.
 Le contrôleur recherche des parcelles malades et les rase.
 ```
 
-### Planification du changement d'année ( Tout les 30 pas de temps)
+### 4.3 - Planification du changement d'année ( Tous les 30 pas de temps)
 
 ```
 Calcul les revenus de chaque producteur
@@ -150,31 +196,9 @@ resistante (mais de meilleure qualité)
 Fait grandir les parcelles qui ne sont pas encore prêtes à produire
 ```
 
-## Concepts de Design
-**Observation :**
-- Retribution
-    - totale moyenne
-    - par stratégie
-- Taux d'infestation
-    - I final
-    - trajectoire par variété
-- nb parcelle detecté / nb parcelle visité
-- nb parcelle detecté / nb infesté réel
-- Degré de connectivité des parcelles infectés (fragmentation)
-Influence du climat micro local => influence de la topologie => influence sur la maladie
+## 5 - Design Concepts
 
-**Hypothèses:**
-
-H0 Controleur bouge par secteur Et/Ou Transect
-
-H0 Acteurs proprio cpt homogène
-H1 Acteurs proprio cpt hétérogène
-
-H0 Aléatoires sur variété et dans l'espace
-H1 Structuration spatiale
-H2 complexité sur propriétaire
-
-### Adaptation
+### 5.1 - Adaptation
 
 Deux adaptations sont présentes dans le modèle. Ces deux adaptations sont faites pour contrer la propagation de la maladie.
 
@@ -182,25 +206,36 @@ Deux adaptations sont présentes dans le modèle. Ces deux adaptations sont fait
 
 - Si une parcelle est rasée à cause de la maladie, le producteur va décider de planter sur cette parcelle une variété moins sensible afin de réduire les chances que cette parcelle ne tombe à nouveau malade.
 -
-### Objectifs
+### 5.2 - Objectifs
 
 L'objectif des contrôleurs est d'arrêter la maladie.
 
 L'objectif des producteurs est de maximiser ses revenus. Pour ce faire, il doit produire avec ses parcelles et réduire l'avancée de la maladie.
 
-### Apprentissage
+### 5.3 - Apprentissage
+
+#### 5.3.1 Approche théorique des triades de Minsky
+Pour implementer l'apprentissages dans le modèle compote, nous nous sommes inspirer des travaux de B. Bonté ([2011](https://ur-green.cirad.fr/content/download/4529/34280/version/1/file/These_Bonte.pdf)) sur les triades de Minsky.
+
+> Nous proposons de considérer le triplet "objet, model et observateur" (l'observateur observe l'objet, construit et utilise le modèle). Nous appellons ce triplet la "triade de Minsky" en référence à la définition de modèle données par Marvin Minsky et qui fait intervenir ces trois entités. Bonté (2011, p.3)
+
+
+Dans le cadre de ce modèle nous avons définit une triade tres simples :
+* L'observateur (le contrôleur) va évoluer dans un monde qu'il ne perçois qu'en partie. Basé sur cette percetion il va au fur et à mesure se construire une carte d'infection à partir de laquelle il va prendre ses décisions de contrôle.
+
+#### 5.3.2 Description pratique
 
 Les contrôleurs sont capables d'apprendre du passé. Ils possèdent une carte de risque ou plus une case a de chance d'être infesté, plus elle a une grande valeur.
 À chaque fois que le contrôleur trouve une parcelle infestée, il va lui attribuer une valeur de risque égale à son niveau d'infestation.
 À la fin du tour, chaque case de sa carte de potentiel va diffuser sa valeur à son voisin. C'est-à-dire qu'elle va baisser sa valeur et augmenter celle de ses voisins d'un certain pourcentage de sa valeur.
 De cette manière, le contrôleur peut oublier avec le temps les zones qui ont un jour été infesté, mais qui ne le sont plus et peut également prendre en compte la notion de propagation dans le voisinage dans son calcul de risque.
 
-### Sensing
+### 5.4 - Sensing
 
 Chaque agent contrôleur et producteur possèdent un seuil de détection. C'est-à-dire que parmi les cellules à prospecter qu'il aura sélectionner selon ses critères, il ne va pas obligatoirement repérer toutes les parcelles infestés.
 Ici, nous considérons que l'agent ne repère une parcelle infesté que si son degré d'infestation est supérieur à son seuil d'infestation.
 
-### Stochasticité
+### 5.5 - Stochasticité
 
 Dans notre modèle, de l'aléatoire peut être trouvé sur trois points
 
@@ -215,15 +250,25 @@ Les chances qu'une parcelle soit sélectionnée pour la prospection sont proport
 Le producteur a un biais sur la sélection de parcelles. Il cherche majoritairement à protéger les parcelles les plus sensibles, qui possèdent ici également une plus grande qualité et produisent donc un plus grand revenu.
 Il sélectionne donc 15 parcelles aléatoirement parmi celles qui ont une sensibilité supérieure à la moyenne et 5 aléatoirement parmi celles qui ont une sensibilité inférieure à la moyenne.
 
-## Details
+ ### 5.6 Observations
+- Retribution
+    - totale moyenne
+    - par stratégie
+- Taux d'infestation
+    - I final
+    - trajectoire par variété
+- nb parcelle detecté / nb parcelle visité
+- nb parcelle detecté / nb infesté réel
+- Degré de connectivité des parcelles infectés (fragmentation)
+Influence du climat micro local => influence de la topologie => influence sur la maladie
 
-### Initialisation
+## 6 - Initialisation
 
 L'initialisation du modèle a été effectué en plusieurs temps. Une première exploration du modèle a eu lieu. Au cours de celle-ci, les processus des humains n'ont pas été utilisés. Seules les dynamiques de propagation de la maladie ont été utilisées.
 
 Cela a permis d'établir les valeurs que nous avons utilisé pour la propagation de la maladie.
 
-### Input Data
+## 7 - Input Data
 
 En entrée, nous avons utilisé différentes cartes générées avec la bibliothèque nlmr (Neutral Landscape Models for R). Grâce à celle-ci, nous avons pu générer 120 cartes.
 
@@ -234,9 +279,9 @@ En entrée, nous avons utilisé différentes cartes générées avec la biblioth
 
 Ces cartes servent à tester l'effet de l'influence des configurations spatiales du paysage sur la propagation des maladies.
 
-### Sous modèles
+## 8 - Sous modèles
 
-#### Action du controleur
+### 8.1 Action du controleur
 
 ```
 Sélectionne un certain nombre de parcelles.
@@ -251,8 +296,9 @@ Pour chaque parcelle sélectionnée :
     La parcelle est rasée
 ```
 
+Figure + Equation
 
-#### Action du producteur
+### 8.2 Action du producteur
 
 ```
 Sélectionne 15 parcelles avec une sensibilité inférieure à la moyenne
@@ -272,11 +318,13 @@ Pour chaque parcelles selectionnée :
 
 ```
 
-# Exploration
+Figure + Equation
+
+# Plan de simulation
 
 ## DOE explo
 
-Le sampling utilisé pour la première expérience est de type plan complet dans OpenMOLE (voir les scripts dans `/workflow` sur le dépot github du projet)
+Le sampling utilisé pour la première expérience est de type plan complet dans OpenMOLE (voir les scripts dans _[workflow](https://github.com/MAPS-fr/MAPS-11/tree/master/COMPOTE/workflow)_ sur le dépot github du projet)
 
 ```scala
 val sampling = (seed in (UniformDistribution[Int]() take 5)) x
@@ -289,10 +337,15 @@ val sampling = (seed in (UniformDistribution[Int]() take 5)) x
 
 
 Paramètres :
-* **P_{Camouflage}** => 0..1  
+* $P_{Camouflage}$ => 0..1  
 * Surface visité
+
+![](https://)
+
+# Resultats
 
 
 # Conclusion
+
 
 # Bibliographie
