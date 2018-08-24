@@ -1,6 +1,6 @@
 to develop_patches ;;patch context
   ;; Update the production
-  ifelse (Infest < 1 and Variety != -1)[ ; If the patch is not infected and is cultivated with a variety
+  ifelse (Infest < 1 and Variety != -1)[ ; If the patch is not destroyed and is cultivated with a variety
     let ProdInc rProd * Production * (1 - Production / (1 - Infest) )
     set Production Production + ProdInc
     if ( Production > 1 ) [set Production 1]
@@ -9,7 +9,7 @@ to develop_patches ;;patch context
     set Production 0
   ]
   
-  if Infest > 0 [ ;; propate the infestation on the patch
+  if Infest > 0 [ ;; propagate the infestation on the patch
     set Infest Infest + Sensibility * rInfest
     if Infest > 1 [set Infest 1]
     
